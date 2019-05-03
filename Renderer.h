@@ -1,14 +1,20 @@
-
+#include <string>
+#include <Player>
+#include <Board>
 
 class Renderer {
 public:
 	void clearConsole();
 	void mainMenu();
-	void playerName(String player);
+	void playerName(string player);
 	void loadGame();
 	void showStudentInfo();
 	
-	String getInput();
+	void playerTurn(bool player1Turn, string player1Name, string player2Name);
+	void playerScore(Player player);
+	void board(Board board);
+	
+	string getInput();
 	
 	bool getQuit();
 

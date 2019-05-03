@@ -2,16 +2,46 @@
 #include "LinkedList.h"
 
 #include <iostream>
+#include <string>
 
 #define EXIT_SUCCESS    0
 
+// Functions
+void newGame();
+void loadGame();
+void quit();
+
 int main(void) {
+	
+   bool quitGame = false;
+   
    LinkedList* list = new LinkedList();
    delete list;
 
    std::cout << "TODO: Implement Qwirkle!" << std::endl;
 
    return EXIT_SUCCESS;
+}
+
+void newGame()
+{
+	
+}
+
+bool playerValidation(string name)
+{
+	//validates player name to specification after getting input...
+	return false;
+}
+
+void loadGame()
+{
+	
+}
+
+bool quit()
+{
+	return true;
 }
 
 /* INSTANCE VARIABLES / FIELDS
@@ -104,7 +134,7 @@ input given returns us to the main menu.
 
 /* quit() method implementation pseudo code:
 	
-quitGame = true;
+set the quitGame bool to equal quit() which returns true.
 //sets quitGame variable to true to exit out of our main loop and quit
 	
 */
