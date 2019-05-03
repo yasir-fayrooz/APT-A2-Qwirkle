@@ -14,10 +14,8 @@ int main(void) {
    return EXIT_SUCCESS;
 }
 
-
 /* INSTANCE VARIABLES / FIELDS
 
-GameEngine gameEngine;
 Renderer render = new Renderer() instance
 
 private boolean quitGame = false;
@@ -72,7 +70,7 @@ WHILE (playerValidation(player2) == false && render.getQuit == false)
 ENDWHILE
 
 IF(render.getQuit == false)
-	gameEngine = new GameEngine(player1, player2);
+	GameEngine gameEngine = new GameEngine(player1, player2);
 	gameEngine.startGame(render);
 ENDIF
 
