@@ -58,7 +58,10 @@ void Renderer::board(Board board)
 	//this will be a bit difficult to render but not too difficult.
 }
 
-
+void Renderer::playerHand(bool player1Turn, Player player, Player player)
+{
+	
+}
 
 
 /* INSTANCE VARIABLES / FIELDS
@@ -131,4 +134,13 @@ boolean quit = false;
 
 	//i will implement a pseudocode later as it is a bit lengthy
 
+*/
+
+/* playerHand(bool player1Turn, Player player1, Player player2) method pseudocode
+	std::cout "Your hands is" std::endl;
+	
+	check IF player1Turn == true
+	std::cout player1.getPlayerHandString() std::endl;
+	ELSE
+	std::cout player2.getPlayerHandString() std::endl;
 */
