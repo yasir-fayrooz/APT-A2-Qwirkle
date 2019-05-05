@@ -2,7 +2,7 @@
 #include <PlayerHand>
 #include <TileBag>
 
-class GameEngine {
+class Player {
 public:
    Player(string player1name, string player2name);
    
