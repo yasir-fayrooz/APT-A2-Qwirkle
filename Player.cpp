@@ -1,4 +1,4 @@
-#include Player.h
+#include "Player.h"
 
 Player::Player(string name, TileBag* tileBag)
 {
@@ -46,6 +46,16 @@ bool Player::checkIfTileInHand(char color, int shape)
 {
 	//pseudocode done
 	return false;
+}
+
+void Player::deleteTileHand(char color, int shape)
+{
+	playerHand.deleteTileHand(color, shape);
+}
+
+void Player::drawTile(TileBag* tileBag)
+{
+	playerHand.drawTile(tileBag);
 }
 
 /* INSTANCE VARIABLES / FIELDS

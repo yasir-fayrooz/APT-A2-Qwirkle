@@ -1,5 +1,5 @@
-#include GameEngine.h
-#include TileCodes.h
+#include "GameEngine.h"
+#include "TileCodes.h"
 
 GameEngine::GameEngine(string player1name, string player2name)
 {
@@ -205,6 +205,14 @@ int xPos = //FOURTH word of string input, FIRST LETTER converted to int (i.e. in
 int yPos = //FOURTH word of string input, SECOND LETTER converted to int (i.e. input = "place G5 at C4" = C4 = 4 = 4)
 
 board.placeTile(color, shape, xPos, yPos);
+
+IF(player1Turn == true)
+	players[0].deleteTileHand(color, shape);
+	players[0].drawTile(tileBag);
+ELSEIF(player1Turn == false)
+	players[1].deleteTileHand(color, shape);
+	players[1].drawTile(tileBag);
+ENDIF
 
 calculatePointsScored(color, shape, xPos, yPos);
 

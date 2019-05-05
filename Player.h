@@ -13,6 +13,8 @@ public:
    void         replaceTile(char color, int shape, TileBag* tileBag)
    PlayerHand   getPlayerHand();
    bool         checkIfTileInHand(char color, int shape);
+   void         drawTile(TileBag* tileBag);
+   void         deleteTileHand(char color, int shape);
    
 private:
 //instance variables
