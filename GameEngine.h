@@ -19,6 +19,7 @@ private:
    
    Player players[2]; //2 players
    bool player1Turn = true; //if true, player 1's turn, if false, player 2's turn...
+   bool qwirkle = false;
    
    bool endGame = false; //checks for win conditions and sets to true when game ends
    
@@ -27,9 +28,14 @@ private:
    bool validation(string input);
    void replace(string input);
    void place(string input);
-   void calculatePointsScored();
+   void calculatePointsScored(char color, int shape, int xPos, int yPos);
+   int  pointsScored(int xPos, int yPos, string side);
    bool endGameChecker();
    bool inputValidation(string input);
    bool playerHandValidation(string inputType, string input);
-   bool boardPosValidation(string inputType, string input);
+   bool boardPosValidation(string input);
+   bool withinBoardSize(int xPos, int yPos);
+   bool placingOnEmptyTile(int xPos, int yPos);
+   bool validPlacing(string input, int xPos, int yPos);
+   bool nearSameColorOrShape(char color, int shape, int xPos, int yPos, int newX, int newY);
 };
