@@ -4,6 +4,10 @@
 GameEngine::GameEngine(string player1name, string player2name)
 {
 	//creates 2 new players in the player array, initialises new things such as board etc.
+	//board = new Board();
+	//tileBag = new TileBag();
+	//players[0] = new Player(player1Name, POINTER TO TILEBAG);
+	//players[1] = new Player(player2Name, POINTER TO TILEBAG);
 }
 
 GameEngine::GameEngine(string fileName)
@@ -113,6 +117,10 @@ bool endGame = false;
 
 WHILE(endGame == false && render.getQuit() == false)
 	renderGame();
+	IF(qwirkle == true)
+		render.quirkle();
+		quirkle = false;
+	ENDIF
 	
 	string input = render.getInput();
 	bool validation = validation(input);
