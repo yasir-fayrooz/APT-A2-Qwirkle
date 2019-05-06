@@ -38,4 +38,6 @@ private:
    bool placingOnEmptyTile(int xPos, int yPos);
    bool validPlacing(string input, int xPos, int yPos);
    bool nearSameColorOrShape(char color, int shape, int xPos, int yPos, int newX, int newY);
+   bool checkSaveGame(string input);
+   void saveGame(string input);
 };

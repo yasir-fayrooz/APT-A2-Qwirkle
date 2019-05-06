@@ -101,6 +101,17 @@ bool GameEngine::nearSameColorOrShape(char color, int shape, int xPos, int yPos,
 	return false;
 }
 
+bool GameEngine::checkSaveGame(string input)
+{
+	//pseudocode done
+	return false;
+}
+
+void GameEngine::saveGame(string input)
+{
+	
+}
+
 /* INSTANCE VARIABLES / FIELDS
 
 Board board;
@@ -114,6 +125,7 @@ bool endGame = false;
 */
 
 /* startGame(Renderer render) pseudocode implementation:
+bool saveGame = false;
 
 WHILE(endGame == false && render.getQuit() == false)
 	renderGame();
@@ -122,14 +134,22 @@ WHILE(endGame == false && render.getQuit() == false)
 		quirkle = false;
 	ENDIF
 	
-	string input = render.getInput();
-	bool validation = validation(input);
+	bool validation = false;
 	
 	WHILE(validation == false && render.getQuit() == false)
-		renderGame();
-		render.validationError();
-		input = render.getInput();
+		string input = render.getInput();
+		bool saveGame = checkSaveGame(input);
 		validation = validation(input);
+		
+		IF(validation == false && saveGame == false)
+			renderGame();
+			render.validationError();
+		ENDIF
+		
+		IF(saveGame == true)
+			saveGame(input);
+		ENDIF
+		
 	ENDWHILE
 	
 	string inputType = //FIRST WORD OF THE input STRING (will be either "place" or "replace")
@@ -493,5 +513,40 @@ ELSEIF(board.getTile(checkXPos, checkYPos).getShape() == shape)
 ENDIF
 
 return validated
+
+*/
+
+/* checkSaveGame(string input) method pseudocode
+bool save = false;
+
+IF first word of input EQUALS "save"
+	IF(THERE IS A SPACE after "save")
+		IF(input.length > 5)
+			save = true;
+		ENDIF
+	ENDIF
+ENDIF
+
+return save;
+
+*/
+
+/* saveGame(string input) method pseudocode
+
+string fileName = SECOND word from input string
+
+//CREATE NEW FILE WITH FILE NAME
+
+//IN FILE, PRINT players[0].getName();
+//IN FILE, PRINT players[0].getScore();
+//IN FILE, PRINT players[0].getPlayerHandString();
+//IN FILE, PRINT players[1].getName();
+//IN FILE, PRINT players[1].getScore();
+//IN FILE, PRINT players[1].getPlayerHandString();
+
+//IN FILE, PRINT whole board maybe use render.board() if possible?
+
+//IN FILE, PRINT tileBag values separated by commas
+
 
 */

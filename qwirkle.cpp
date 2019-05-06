@@ -10,14 +10,18 @@
 void newGame();
 void loadGame();
 void quit();
+bool playerValidation(string name);
+void fileValidation(string fileName);
 
 int main(void) {
 	
    bool quitGame = false;
-   
+   /*
    LinkedList* list = new LinkedList();
    delete list;
-
+   
+   */
+   
    std::cout << "TODO: Implement Qwirkle!" << std::endl;
 
    return EXIT_SUCCESS;
@@ -37,6 +41,11 @@ bool playerValidation(string name)
 void loadGame()
 {
 	
+}
+
+void fileValidation(string fileName)
+{
+	//checks if relative file path name exists
 }
 
 bool quit()
@@ -89,17 +98,17 @@ render.clearConsole();
 String player1 = null;
 String player2 = null;
 
-WHILE (playerValidation(player1) == false && render.getQuit == false)
+WHILE (playerValidation(player1) == false && render.getQuit() == false)
 	render.playerName("Player 1"); //This will render player 1 to enter his name
 	player1 = render.getInput(); 
 ENDWHILE
 
-WHILE (playerValidation(player2) == false && render.getQuit == false)
+WHILE (playerValidation(player2) == false && render.getQuit() == false)
 	render.playerName("Player 2"); //This will render player 2 to enter his name
 	player2 = render.getInput();
 ENDWHILE
 
-IF(render.getQuit == false)
+IF(render.getQuit() == false)
 	GameEngine gameEngine = new GameEngine(player1, player2);
 	gameEngine.startGame(render);
 ENDIF
@@ -111,13 +120,13 @@ render.clearConsole();
 
 String fileName = null;
 
-WHILE (fileValidation(fileName) == false && render.getQuit == false)
+WHILE (fileValidation(fileName) == false && render.getQuit() == false)
 	render.loadGame();
 			//This will render line to enter file name to load
 	fileName = render.getInput();
 ENDWHILE
 
-IF(render.getQuit == false)
+IF(render.getQuit() == false)
 	gameEngine = new GameEngine(fileName);
 	gameEngine.startGame(render);
 ENDIF

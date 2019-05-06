@@ -23,7 +23,7 @@ bool Renderer::getQuit()
 
 void Renderer::mainMenu()
 {
-	
+	quit = false;
 }
 
 void Renderer::playerName(string player)

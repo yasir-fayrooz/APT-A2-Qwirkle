@@ -13,11 +13,24 @@ PlayerHand::PlayerHand(TileBag* tileBag)
 
 void PlayerHand::drawTile(TileBag* tileBag)
 {
-	//playerHand.addback(tileBag.drawTile(0));
+	//playerHand.addback(tileBag.drawTileFront());
+}
+
+void PlayerHand::replaceTile(char color, int shape, TileBag* tileBag)
+{
+	//tileBag.addBack(color, shape);
+	//PlayerHand::deleteTileHand(color, shape);
+	//PlayerHand::drawTile(tileBag);
+}
+
+bool checkIfTileInHand(char color, int shape)
+{
+	return playerHand.tileExists(color, shape);
 }
 
 void PlayerHand::deleteTileHand(char color, int shape)
 {
+	playerHand.deleteTileHand(char color, int shape);
 	//iterate through linked list, find same color and shape and remove from list
 }
 
@@ -33,7 +46,7 @@ string PlayerHand::toString()
 int PlayerHand::getSize()
 {
 	//returns the size of the LinkedList instance variable "playerHand"
-	return 0;
+	return playerHand.size();
 }
 
 /* INSTANCE VARIABLES / FIELDS
