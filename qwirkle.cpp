@@ -9,13 +9,13 @@
 // Functions
 void newGame();
 void loadGame();
-void quit();
-bool playerValidation(string name);
-void fileValidation(string fileName);
+bool quit();
+bool playerValidation(std::string name);
+void fileValidation(std::string fileName);
 
 int main(void) {
 
-   bool quitGame = false;
+	 bool quitGame = false;
    /*
    LinkedList* list = new LinkedList();
    delete list;
@@ -32,7 +32,7 @@ void newGame()
 
 }
 
-bool playerValidation(string name)
+bool playerValidation(std::string name)
 {
 	//validates player name to specification after getting input...
 	return false;
@@ -43,7 +43,7 @@ void loadGame()
 
 }
 
-void fileValidation(string fileName)
+void fileValidation(std::string fileName)
 {
 	//checks if relative file path name exists
 }

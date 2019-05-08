@@ -11,7 +11,7 @@ public:
 
    LinkedList();
    ~LinkedList();
-   
+
    int    size();
    Tile   get(int i);
    void   addBack(Tile tile);
