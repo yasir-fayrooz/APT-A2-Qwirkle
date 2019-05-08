@@ -3,7 +3,7 @@
 #define ASSIGN2_TILE_H
 
 // Define a Colour type
-typedef char Colour;
+typedef char Color;
 
 // Define a Shape type
 typedef int Shape;
@@ -11,12 +11,12 @@ typedef int Shape;
 class Tile {
 public:
    Tile(Color color, Shape shape);
-   
+
    Color  getColor();
    Shape  getShape();
 
 private:
-   Colour colour;
+   Color color;
    Shape  shape;
 };
 

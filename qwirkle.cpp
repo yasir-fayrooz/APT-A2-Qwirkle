@@ -15,7 +15,7 @@ void fileValidation(std::string fileName);
 
 int main(void) {
 
-	 bool quitGame = false;
+	 //bool quitGame = false;
    /*
    LinkedList* list = new LinkedList();
    delete list;

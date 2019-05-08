@@ -4,7 +4,7 @@
 
 #include "Node.h"
 
-#include <Tile>
+//#include <Tile>
 
 class LinkedList {
 public:
@@ -12,7 +12,7 @@ public:
    LinkedList();
    ~LinkedList();
 
-   int    size();
+   int    getSize();
    Tile   get(int i);
    void   addBack(Tile tile);
    void   deleteTileFront();
