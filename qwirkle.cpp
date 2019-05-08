@@ -14,22 +14,22 @@ bool playerValidation(string name);
 void fileValidation(string fileName);
 
 int main(void) {
-	
+
    bool quitGame = false;
    /*
    LinkedList* list = new LinkedList();
    delete list;
-   
+
    */
-   
-   std::cout << "TODO: Implement Qwirkle!" << std::endl;
+
+   std::cout << "Welcome to Qwirkle!" << std::endl;
 
    return EXIT_SUCCESS;
 }
 
 void newGame()
 {
-	
+
 }
 
 bool playerValidation(string name)
@@ -40,7 +40,7 @@ bool playerValidation(string name)
 
 void loadGame()
 {
-	
+
 }
 
 void fileValidation(string fileName)
@@ -64,7 +64,7 @@ private boolean quitGame = false;
 /* main() method implementation pseudo code:
 
 WHILE (quitGame == false)
-	
+
 	render.clearConsole();
 	render.mainMenu();
 			//This method will render the main menu
@@ -86,7 +86,7 @@ WHILE (quitGame == false)
 		//This method will be in the qwirkle class for further explanation.
 	ELSE
 		print error blah blah...
-	
+
 ENDWHILE
 
 */
@@ -100,7 +100,7 @@ String player2 = null;
 
 WHILE (playerValidation(player1) == false && render.getQuit() == false)
 	render.playerName("Player 1"); //This will render player 1 to enter his name
-	player1 = render.getInput(); 
+	player1 = render.getInput();
 ENDWHILE
 
 WHILE (playerValidation(player2) == false && render.getQuit() == false)
@@ -134,16 +134,16 @@ ENDIF
 */
 
 /* showStudentInfo() method implementation pseudo code:
-	
+
 This should be fairly straight forward to do. All you have to do
-is clear the console, print out our student names and the next 
+is clear the console, print out our student names and the next
 input given returns us to the main menu.
 
 */
 
 /* quit() method implementation pseudo code:
-	
+
 set the quitGame bool to equal quit() which returns true.
 //sets quitGame variable to true to exit out of our main loop and quit
-	
+
 */
