@@ -13,6 +13,7 @@ GameEngine::GameEngine(string player1name, string player2name)
 GameEngine::GameEngine(string fileName)
 {
 	//loads from file and stores into instance variables in .h file
+	GameEngine::loadGame(fileName);
 }
 
 void GameEngine::startGame(Renderer render)
@@ -108,6 +109,11 @@ bool GameEngine::checkSaveGame(string input)
 }
 
 void GameEngine::saveGame(string input)
+{
+	
+}
+
+void GameEngine::loadGame(string fileName)
 {
 	
 }
@@ -546,7 +552,29 @@ string fileName = SECOND word from input string
 
 //IN FILE, PRINT whole board maybe use render.board() if possible?
 
-//IN FILE, PRINT tileBag values separated by commas
+//IN FILE, PRINT tileBag.toString();
 
+IF(player1Turn == true)
+	//IN FILE, PRINT players[0].getName();
+ELSE IF (player1Turn == false)
+	//IN FILE, PRINT players[1].getName();
+
+
+
+*/
+
+/* loadGame(string fileName) method pseudocode
+
+//OPEN FILE
+
+//FIRST LINE string user1 = players[0].setName(user1);
+//SECOND LINE string score1 CONVERT TO INT = players[0].setScore(score1);
+//THIRD LINE string hand1 = players[0].setHand(hand1);
+
+//FOURTH LINE string user2 = players[1].setName(user2);
+//FIFTH LINE string score2 CONVERT TO INT = players[1].setScore(score2);
+//SIXTH LINE string hand2 = players[1].setHand(hand2);
+
+//SEVENTH LINE IS THE BOARD WHICH IS COMPLEX WORK IN PROGRESS
 
 */

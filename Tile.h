@@ -14,6 +14,7 @@ public:
 
    Color  getColor();
    Shape  getShape();
+   string toString();
 
 private:
    Color color;

@@ -17,3 +17,10 @@ Shape Tile::getShape()
 {
 	return shape;
 }
+
+string Tile::toString()
+{
+	//string s = color + shape;
+	
+	//return s;
+}

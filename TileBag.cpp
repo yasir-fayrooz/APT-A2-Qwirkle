@@ -39,6 +39,17 @@ void TileBag::shuffleBag()
 	*/
 }
 
+string TileBag::toString()
+{
+	//Create new string "";
+	//FOR(each tile in tileBag)
+		//string = string + tile.toString();
+		//string = string + ",";
+	//END FOR LOOP
+	
+	//return string
+}
+
 /* INSTANCE VARIABLES / FIELDS
  
  LinkedList tileBag;

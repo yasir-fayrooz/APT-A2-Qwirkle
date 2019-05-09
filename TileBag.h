@@ -11,6 +11,7 @@ public:
    int      getSize();
    Tile     drawTileFront();
    void     addBack(char color, int shape);
+   string   toString();
 
 private:
 //instance variables
