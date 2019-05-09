@@ -11,8 +11,8 @@
 void newGame();
 void loadGame();
 bool quit();
-bool playerValidation(std::string name);
-void fileValidation(std::string fileName);
+bool playerValidation(string name);
+void fileValidation(string fileName);
 
 int main(void) {
 
@@ -33,7 +33,7 @@ void newGame()
 
 }
 
-bool playerValidation(std::string name)
+bool playerValidation(string name)
 {
 	//validates player name to specification after getting input...
 	return false;
@@ -44,7 +44,7 @@ void loadGame()
 
 }
 
-void fileValidation(std::string fileName)
+void fileValidation(string fileName)
 {
 	//checks if relative file path name exists
 }
