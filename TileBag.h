@@ -1,7 +1,7 @@
 #include "Tile.h"
+#include "LinkedList.h"
 
 #include <string>
-#include <list>
 
 class TileBag {
 public:

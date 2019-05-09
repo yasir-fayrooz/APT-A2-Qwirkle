@@ -1,7 +1,7 @@
 #include "TileBag.h"
+#include "LinkedList.h"
 
 #include <string>
-#include <list>
 
 class PlayerHand {
 public:

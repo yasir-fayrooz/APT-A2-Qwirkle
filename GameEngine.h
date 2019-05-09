@@ -1,8 +1,8 @@
 #include <string>
-#include <Renderer>
-#include <Player>
-#include <Board>
-#include <TileBag>
+#include "Renderer.h"
+#include "Player.h"
+#include "Board.h"
+#include "TileBag.h"
 
 class GameEngine {
 public:
