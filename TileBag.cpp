@@ -36,7 +36,8 @@ void TileBag::shuffleBag()
 	FOR(int index = 0; index < tileBag.getSize(); index++)
 		int randomNumber = //RANDOM NUMBER FROM 0 TO tileBag.getSize() - 1
 		tileBag.shuffleTiles(index, randomNumber);
-		
+	
+//RAPH CODE START	
 	int min = 1;
         int max = tileBag.getSize();
 
@@ -46,6 +47,7 @@ void TileBag::shuffleBag()
         int value = -1;
         for (int i = 0; i != tileBag.getSize(); ++i) {
         value = uniform_dist(engine);
+//RAPH CODE END
 		
 	*/
 }
