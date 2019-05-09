@@ -3,12 +3,8 @@
 TileBag::TileBag()
 {
 	//tileBag = new LinkedList();
-	//drawTile(tileBag); //draw 6 tiles into your hand, maybe do this in a for loop. im just too lazy
-	//drawTile(tileBag);
-	//drawTile(tileBag);
-	//drawTile(tileBag);
-	//drawTile(tileBag);
-	//drawTile(tileBag);
+	//tileBag.initialiseTiles();
+	//tileBag.shuffleBag();
 }
 
 int TileBag::getSize()
@@ -25,6 +21,22 @@ Tile TileBag::drawTileFront()
 void TileBag::addBack(char color, int shape)
 {
 	//pseudocode done
+}
+
+void TileBag::initialiseTiles()
+{
+	//RUNS LOOP AND ADDSBACK 2 OF EACH TILE TO THE TILE BAG LIST IN ORDER
+}
+
+void TileBag::shuffleBag()
+{
+	/*
+	
+	FOR(int index = 0; index < tileBag.getSize(); index++)
+		int randomNumber = //RANDOM NUMBER FROM 0 TO tileBag.getSize() - 1
+		tileBag.shuffleTiles(index, randomNumber);	
+		
+	*/
 }
 
 /* INSTANCE VARIABLES / FIELDS

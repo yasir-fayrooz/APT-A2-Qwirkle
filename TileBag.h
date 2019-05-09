@@ -15,6 +15,9 @@ public:
 private:
 //instance variables
    LinkedList tileBag;
+   
+   void       shuffleBag();
+   void       initialiseTiles();
 
 //methods
 
