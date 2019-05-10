@@ -51,13 +51,20 @@ void LinkedList::deleteTileFront(){
 //iterates through the list and finds the first Tile with the same color and shape and deletes it.
 void LinkedList::deleteTileHand(char color, int shape){
 	Node* tempNode = head;
-	while((tempNode->tile->getColor() != color || tempNode->tile->getShape() != shape) && tempNode != nullptr){
-		tempNode = tempNode->next;
+	if(head->tile->getColor() == color || head->tile->getShape() == shape){
+		deleteTileFront();
+		size--;
+	}else{
+		while((tempNode->next->tile->getColor() != color || tempNode->next->tile->getShape() != shape) && tempNode != nullptr){
+			tempNode = tempNode->next;
+		}
+		if(tempNode->next != nullptr){
+			Node* toDelete = tempNode->next;
+			tempNode->next = toDelete->next;
+			delete toDelete;
+			size--;
+		}
 	}
-	if(tempNode != nullptr){
-		//deleteNode(tempNode);
-	}
-	size--;
 }
 
 //iterate through list, if same color and shape set exists to true and return valid
