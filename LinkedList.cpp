@@ -2,7 +2,7 @@
 #include "LinkedList.h"
 
 //constructor
-LinkedList::LinkedList() : head(nullptr), size(0) {}				//size?
+LinkedList::LinkedList() : head(nullptr), size(0) {}
 
 //deconstructor
 LinkedList::~LinkedList() {}
@@ -80,7 +80,7 @@ bool LinkedList::tileExists(char color, int shape){
 	return exists;
 }
 
-//switch?
+//switch tiles
 void LinkedList::shuffleTiles(int index, int randomNumber)
 {
 
