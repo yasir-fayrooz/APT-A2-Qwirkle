@@ -24,7 +24,8 @@ Tile* TileBag::drawTileFront(){
 
 void TileBag::addBack(char color, int shape)
 {
-	//pseudocode done
+	Tile* tile = new Tile(color,shape);
+	tileBag->addBack(tile);
 }
 
 void TileBag::initialiseTiles()
