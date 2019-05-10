@@ -38,12 +38,12 @@ void LinkedList::addBack(Tile* tile){
 }
 
 void LinkedList::deleteTileFront(){
+	Node* toDelete = head;
 	if(size == 1){
 		head = nullptr;
 	}else if(size > 1){
-		deleteNode(head);
-		// head = head->next;
-		// delete toDelete;
+		 head = head->next;
+		 delete toDelete;
 	}
 	size--;
 }
@@ -55,7 +55,7 @@ void LinkedList::deleteTileHand(char color, int shape){
 		tempNode = tempNode->next;
 	}
 	if(tempNode != nullptr){
-		deleteNode(tempNode);
+		//deleteNode(tempNode);
 	}
 	size--;
 }
@@ -91,10 +91,4 @@ void LinkedList::shuffleTiles(int index, int randomNumber)
 		//SWAP THE TILES POSITIONS IN THE LINKED LIST
 		//I THINK THATS HOW ITS DONE DOUBLE CHECK WHEN YOU WRITE IT
 	*/
-}
-
-void LinkedList::deleteNode(Node* node){
-	Node* toDelete = node;
-	node = node->next;
-	delete toDelete;
 }
