@@ -9,14 +9,14 @@ public:
 
    //real methods
    int      getSize();
-   Tile     drawTileFront();
+   Tile*     drawTileFront();
    void     addBack(char color, int shape);
    string   toString();
 
 private:
 //instance variables
    LinkedList tileBag;
-   
+
    void       shuffleBag();
    void       initialiseTiles();
 
