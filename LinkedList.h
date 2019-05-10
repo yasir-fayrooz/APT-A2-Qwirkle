@@ -17,6 +17,7 @@ public:
    void   deleteTileHand(char color, int shape);
    bool   tileExists(char color, int shape);
    void   shuffleTiles(int index, int randomNumber);
+   void   deleteNode(Node* node);
 
 private:
    Node* head;

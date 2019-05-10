@@ -1,8 +1,6 @@
 
 #include "Tile.h"
 
-
-
 using std::string;
 
 Tile::Tile(Color color, Shape shape)
@@ -10,7 +8,6 @@ Tile::Tile(Color color, Shape shape)
    this.color = color;
    this.shape = shape;
 }
-
 
 Color Tile::getColor()
 {

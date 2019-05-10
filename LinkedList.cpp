@@ -36,27 +36,33 @@ void LinkedList::addBack(Tile* tile){
 }
 
 void LinkedList::deleteTileFront(){
-	Node* toDelete = head;
 	if(size == 1){
 		head = nullptr;
 	}else if(size > 1){
-		head = head->next;
-		delete toDelete;
+		deleteNode(head);
+		// head = head->next;
+		// delete toDelete;
 	}
 	size--;
 }
 
 void LinkedList::deleteTileHand(char color, int shape)
 {
+
 	//iterate through list and find Tile with same color and shape and delete it.
 	//size--;
 }
 
-bool LinkedList::tileExists(char color, int shape)
-{
-	//iterate through list, if same color and shape set exists to true and return valid
+//iterate through list, if same color and shape set exists to true and return valid
+bool LinkedList::tileExists(char color, int shape){
 	bool exists = false;
-
+	Node* tempNode = head;
+	while(tempNode != nullptr){
+		if(tempNode->tile->getColor() == color && tempNode->tile->getShape() == shape){
+			exists = true;
+		}
+		tempNode = tempNode->next;
+	}
 	return exists;
 }
 
@@ -75,4 +81,10 @@ void LinkedList::shuffleTiles(int index, int randomNumber)
 		//SWAP THE TILES POSITIONS IN THE LINKED LIST
 		//I THINK THATS HOW ITS DONE DOUBLE CHECK WHEN YOU WRITE IT
 	*/
+}
+
+void LinkedList::deleteNode(Node* node){
+	Node* toDelete = node;
+	node = node->next;
+	delete toDelete;
 }
