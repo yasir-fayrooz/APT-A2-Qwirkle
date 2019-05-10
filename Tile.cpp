@@ -1,6 +1,10 @@
 
 #include "Tile.h"
 
+
+
+using std::string;
+
 Tile::Tile(Color color, Shape shape)
 {
    this.color = color;
@@ -21,6 +25,6 @@ Shape Tile::getShape()
 string Tile::toString()
 {
 	//string s = color + shape;
-	
+
 	//return s;
 }

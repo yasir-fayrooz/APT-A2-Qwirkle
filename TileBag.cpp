@@ -1,6 +1,8 @@
 #include "TileBag.h"
 #include <random>
 
+using std::string;
+
 TileBag::TileBag()
 {
 	//tileBag = new LinkedList();
@@ -32,12 +34,12 @@ void TileBag::initialiseTiles()
 void TileBag::shuffleBag()
 {
 	/*
-	
+
 	FOR(int index = 0; index < tileBag.getSize(); index++)
 		int randomNumber = //RANDOM NUMBER FROM 0 TO tileBag.getSize() - 1
 		tileBag.shuffleTiles(index, randomNumber);
-	
-//RAPH CODE START	
+
+//RAPH CODE START
 	int min = 1;
         int max = tileBag.getSize();
 
@@ -48,7 +50,7 @@ void TileBag::shuffleBag()
         for (int i = 0; i != tileBag.getSize(); ++i) {
         value = uniform_dist(engine);
 //RAPH CODE END
-		
+
 	*/
 }
 
@@ -59,12 +61,12 @@ string TileBag::toString()
 		//string = string + tile.toString();
 		//string = string + ",";
 	//END FOR LOOP
-	
-	//return string
+
+	return "string";
 }
 
 /* INSTANCE VARIABLES / FIELDS
- 
+
  LinkedList tileBag;
 
 */

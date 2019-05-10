@@ -2,6 +2,10 @@
 #ifndef ASSIGN2_TILE_H
 #define ASSIGN2_TILE_H
 
+#include <string>
+
+using std::string;
+
 // Define a Colour type
 typedef char Color;
 

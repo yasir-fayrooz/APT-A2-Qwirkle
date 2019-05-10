@@ -7,6 +7,8 @@
 
 #define EXIT_SUCCESS    0
 
+using std::string;
+
 // Functions
 void newGame();
 void loadGame();
