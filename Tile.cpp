@@ -5,8 +5,8 @@ using std::string;
 
 Tile::Tile(Color color, Shape shape)
 {
-   this.color = color;
-   this.shape = shape;
+   this->color = color;
+   this->shape = shape;
 }
 
 Color Tile::getColor()

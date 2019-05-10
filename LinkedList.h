@@ -7,11 +7,11 @@
 class LinkedList {
 public:
 
-   LinkedList(Node* head);                                                  //constructor
+   LinkedList();                                                  //constructor
    ~LinkedList();                                                 //deconstructor
 
    int    getSize();
-   Tile*   get(int i);
+   Tile*  get(int i);
    void   addBack(Tile* tile);
    void   deleteTileFront();
    void   deleteTileHand(char color, int shape);

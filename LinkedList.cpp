@@ -2,7 +2,7 @@
 #include "LinkedList.h"
 
 //constructor
-LinkedList::LinkedList(Node* head_) : head(head_), size(0) {}				//size?
+LinkedList::LinkedList() : head(nullptr), size(0) {}				//size?
 
 //deconstructor
 LinkedList::~LinkedList() {}
@@ -29,10 +29,10 @@ void LinkedList::addBack(Tile* tile){
 		head->next = newNode;
 	}else{
 		Node* tempNode = head;
-		while(tempNode != nullptr){
+		while(tempNode->next != nullptr){
 			tempNode = tempNode->next;
 		}
-		tempNode = newNode;
+		tempNode->next = newNode;
 	}
 	size++;
 }
@@ -73,13 +73,17 @@ bool LinkedList::tileExists(char color, int shape){
 	return exists;
 }
 
+//switch?
 void LinkedList::shuffleTiles(int index, int randomNumber)
 {
+
+	Tile tile1;
+
 	/*
 	Tile* tile1 = get(index);
 	Tile* tile2 = get(randomNumber);    //We are getting pointers NOT COPYING TILES
 
-	Tile* tempPointer = &tile2;
+	Tile* tempPointer = &tile2;		//* ?
 
 	tile2 = &tile1;
 	tile1 = &tempPointer;
