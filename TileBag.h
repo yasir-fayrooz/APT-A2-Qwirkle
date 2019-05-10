@@ -16,7 +16,7 @@ public:
 
 private:
 //instance variables
-   LinkedList tileBag;
+   LinkedList* tileBag;
 
    void       shuffleBag();
    void       initialiseTiles();

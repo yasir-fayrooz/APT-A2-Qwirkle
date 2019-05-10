@@ -9,16 +9,16 @@ TileBag::TileBag(){
 	//tileBag.shuffleBag();
 }
 
-~TileBag::TileBag(){}					//deconstructor
+TileBag::~TileBag(){}					//deconstructor
 
 int TileBag::getSize(){
-	return tileBag.getSize();
+	return tileBag->getSize();
 }
 
 //draws the first tile
 Tile* TileBag::drawTileFront(){
 	Tile* tile = tileBag->get(0);
-	tileBag.deleteTileFront();
+	tileBag->deleteTileFront();
 	return tile;
 }
 
