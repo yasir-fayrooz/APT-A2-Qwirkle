@@ -35,10 +35,15 @@ void LinkedList::addBack(Tile* tile){
 	size++;
 }
 
-void LinkedList::deleteTileFront()
-{
-	//deletes tile at the front of list
-	//size--;
+void LinkedList::deleteTileFront(){
+	Node* toDelete = head;
+	if(size == 1){
+		head = nullptr;
+	}else if(size > 1){
+		head = head->next;
+		delete toDelete;
+	}
+	size--;
 }
 
 void LinkedList::deleteTileHand(char color, int shape)
