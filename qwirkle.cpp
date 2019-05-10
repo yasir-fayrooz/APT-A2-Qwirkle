@@ -112,20 +112,11 @@ void showStudentInfo(Renderer* render)
   render->clearConsole(); 
   // clear console
   
-  std::cout << "------------------------------" << "\n";
-  std::cout << "Name: Raph McCarthy" << "\n" << "Student ID: s3544758" << "\n" << "Email: s3544758@student.rmit.edu.au" << "\n \n";
-  std::cout << "Name: Yasir Fayrooz Ali" << "\n" << "Student ID: s3742162" << "\n" << "Email: s3742162@student.rmit.edu.au" << "\n \n"; 
-  std::cout << "Name: Jeremy Richards" << "\n" << "Student ID: s3721762" << "\n" << "Email: s3721762@student.rmit.edu.au" << "\n \n"; 
-  std::cout << "Name: Ido Yaron" << "\n" << "Student ID: s3708691" << "\n" << "Email: s3708691@student.rmit.edu.au" << "\n";
-  std::cout << "------------------------------" << "\n";
+  render->showStudentInfo();
   //print names and info
   
   string input = render->getInput();
-    	while(!input.compare(""))
-    	{
-    	    main();
-    	}
-    	// return to main menu
+  // return to main menu
 }
 
 void fileValidation(std::string fileName)
