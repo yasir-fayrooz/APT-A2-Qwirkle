@@ -5,7 +5,7 @@ using std::string;
 
 TileBag::TileBag(){
 	tileBag = new LinkedList();
-	//initialiseTiles();
+	initialiseTiles();
 	//tileBag.shuffleBag();
 }
 
@@ -28,9 +28,8 @@ void TileBag::addBack(char color, int shape){
 	tileBag->addBack(tile);
 }
 
+//RUNS LOOP AND ADDSBACK 2 OF EACH TILE TO THE TILE BAG LIST IN ORDER
 void TileBag::initialiseTiles(){
-	//RUNS LOOP AND ADDSBACK 2 OF EACH TILE TO THE TILE BAG LIST IN ORDER
-	//shouldn't the tiles be stored in header file?
 	for(int shape=1;shape<7;shape++){
 		for(int i=0;i<2;i++){
 			Tile* r = new Tile('R',shape);
