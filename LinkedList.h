@@ -7,8 +7,8 @@
 class LinkedList {
 public:
 
-   LinkedList();
-   ~LinkedList();
+   LinkedList(Node* head);                                                  //constructor
+   ~LinkedList();                                                 //deconstructor
 
    int    getSize();
    Tile   get(int i);

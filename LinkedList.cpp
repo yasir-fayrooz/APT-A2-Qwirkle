@@ -2,11 +2,7 @@
 #include "LinkedList.h"
 
 
-LinkedList::LinkedList() {
-   head = nullptr;
-
-   // TODO
-}
+LinkedList::LinkedList(Node* head) : head(head) {}
 
 LinkedList::~LinkedList() {
 }
