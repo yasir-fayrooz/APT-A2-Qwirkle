@@ -3,22 +3,23 @@
 
 using std::string;
 
-TileBag::TileBag()
-{
-	//tileBag = new LinkedList();
+TileBag::TileBag(){
+	tileBag = new LinkedList();
 	//tileBag.initialiseTiles();
 	//tileBag.shuffleBag();
 }
 
-int TileBag::getSize()
-{
-	return tileBag.size();
+~TileBag::TileBag(){}					//deconstructor
+
+int TileBag::getSize(){
+	return tileBag.getSize();
 }
 
-Tile TileBag::drawTileFront()
-{
-	//pseudocode done
-	return null;
+//draws the first tile
+Tile* TileBag::drawTileFront(){
+	Tile* tile = tileBag->get(0);
+	tileBag.deleteTileFront();
+	return tile;
 }
 
 void TileBag::addBack(char color, int shape)

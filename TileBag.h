@@ -6,10 +6,11 @@
 class TileBag {
 public:
    TileBag();
+   ~TileBag();
 
    //real methods
    int      getSize();
-   Tile*     drawTileFront();
+   Tile*    drawTileFront();
    void     addBack(char color, int shape);
    string   toString();
 
