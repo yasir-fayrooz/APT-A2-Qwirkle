@@ -12,7 +12,7 @@ public:
 
    int    getSize();
    Tile   get(int i);
-   void   addBack(Tile tile);
+   void   addBack(Tile* tile);
    void   deleteTileFront();
    void   deleteTileHand(char color, int shape);
    bool   tileExists(char color, int shape);

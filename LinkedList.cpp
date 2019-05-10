@@ -1,16 +1,14 @@
 
 #include "LinkedList.h"
 
+//constructor
+LinkedList::LinkedList(Node* head_) : head(head_), size(0) {}				//size?
 
-LinkedList::LinkedList(Node* head) : head(head) {}
+//deconstructor
+LinkedList::~LinkedList() {}
 
-LinkedList::~LinkedList() {
-}
-
-int LinkedList::getSize()
-{
+int LinkedList::getSize(){
 	return size;
-	//size is an instance variable in LinkedList.h file
 }
 
 // Tile LinkedList::get(int i)
@@ -20,10 +18,21 @@ int LinkedList::getSize()
 // 	return nullptr;
 // }
 
-void LinkedList::addBack(Tile tile)
-{
-	//adds tile to the back of the list
-	//size++;
+//adds tile to the back of the list
+void LinkedList::addBack(Tile* tile){
+	Node* newNode = new Node(tile,nullptr);
+	if(head == nullptr){
+		head = newNode;
+	}else if(size == 1){
+		head->next = newNode;
+	}else{
+		Node* tempNode = head;
+		while(tempNode != nullptr){
+			tempNode = tempNode->next;
+		}
+		tempNode = newNode;
+	}
+	size++;
 }
 
 void LinkedList::deleteTileFront()
