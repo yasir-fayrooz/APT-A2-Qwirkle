@@ -22,15 +22,31 @@ Tile* TileBag::drawTileFront(){
 	return tile;
 }
 
-void TileBag::addBack(char color, int shape)
-{
+//adds a tile to the tileBag
+void TileBag::addBack(char color, int shape){
 	Tile* tile = new Tile(color,shape);
 	tileBag->addBack(tile);
 }
 
-void TileBag::initialiseTiles()
-{
+void TileBag::initialiseTiles(){
 	//RUNS LOOP AND ADDSBACK 2 OF EACH TILE TO THE TILE BAG LIST IN ORDER
+	//shouldn't the tiles be stored in header file?
+	for(int shape=1;shape<7;shape++){
+		for(int i=0;i<2;i++){
+			Tile* r = new Tile('R',shape);
+			tileBag->addBack(r);
+			Tile* o = new Tile('O',shape);
+			tileBag->addBack(o);
+			Tile* y = new Tile('Y',shape);
+			tileBag->addBack(y);
+			Tile* g = new Tile('G',shape);
+			tileBag->addBack(g);
+			Tile* b = new Tile('B',shape);
+			tileBag->addBack(b);
+			Tile* p = new Tile('P',shape);
+			tileBag->addBack(p);
+		}
+	}
 }
 
 void TileBag::shuffleBag()
