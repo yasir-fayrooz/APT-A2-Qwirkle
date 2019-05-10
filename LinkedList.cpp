@@ -11,12 +11,14 @@ int LinkedList::getSize(){
 	return size;
 }
 
-// Tile LinkedList::get(int i)
-// {
-// 	//gets the tile at i position and returns it
-// 	//does NOT increment or decrement size
-// 	return nullptr;
-// }
+//gets the tile at i position and returns it
+Tile* LinkedList::get(int i){
+	Node* node = head;
+	for(int k=1;k<i;k++){
+		node = node->next;
+	}
+	return node->tile;
+}
 
 //adds tile to the back of the list
 void LinkedList::addBack(Tile* tile){
