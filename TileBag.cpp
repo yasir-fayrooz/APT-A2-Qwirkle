@@ -5,7 +5,7 @@ using std::string;
 
 TileBag::TileBag(){
 	tileBag = new LinkedList();
-	//tileBag.initialiseTiles();
+	//initialiseTiles();
 	//tileBag.shuffleBag();
 }
 
@@ -72,15 +72,12 @@ void TileBag::shuffleBag()
 	*/
 }
 
-string TileBag::toString()
-{
-	//Create new string "";
-	//FOR(each tile in tileBag)
-		//string = string + tile.toString();
-		//string = string + ",";
-	//END FOR LOOP
-
-	return "string";
+string TileBag::toString(){
+	string str = "";
+	for(int i=0;i<tileBag->getSize();i++){
+		str = str + tileBag->get(i)->getColor() + std::to_string(tileBag->get(i)->getShape()) + ",";
+	}
+	return str;
 }
 
 /* INSTANCE VARIABLES / FIELDS
@@ -106,3 +103,9 @@ Tile tile = new Tile(color, shape);
 tileBag.addBack(tile);
 
 */
+
+//to_string
+//FOR(each tile in tileBag)
+	//string = string + tile.toString();
+	//string = string + ",";
+//END FOR LOOP
