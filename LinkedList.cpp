@@ -46,11 +46,16 @@ void LinkedList::deleteTileFront(){
 	size--;
 }
 
-void LinkedList::deleteTileHand(char color, int shape)
-{
-
-	//iterate through list and find Tile with same color and shape and delete it.
-	//size--;
+//iterates through the list and finds the first Tile with the same color and shape and deletes it.
+void LinkedList::deleteTileHand(char color, int shape){
+	Node* tempNode = head;
+	while((tempNode->tile->getColor() != color || tempNode->tile->getShape() != shape) && tempNode != nullptr){
+		tempNode = tempNode->next;
+	}
+	if(tempNode != nullptr){
+		deleteNode(tempNode);
+	}
+	size--;
 }
 
 //iterate through list, if same color and shape set exists to true and return valid
@@ -69,7 +74,6 @@ bool LinkedList::tileExists(char color, int shape){
 void LinkedList::shuffleTiles(int index, int randomNumber)
 {
 	/*
-
 	Tile* tile1 = get(index);
 	Tile* tile2 = get(randomNumber);    //We are getting pointers NOT COPYING TILES
 
