@@ -9,9 +9,9 @@ using std::string;
 #define EXIT_SUCCESS    0
 
 // Functions
-void newGame();
-void loadGame();
-void showStudentInfo();
+void newGame(Renderer* render);
+void loadGame(Renderer* render);
+void showStudentInfo(Renderer* render);
 bool quit();
 bool playerValidation(string name);
 void fileValidation(string fileName);
@@ -33,15 +33,15 @@ int main(void) {
     //This method will get input and return the string.
     if (input.compare("1"))
     {
-      newGame(render);
+      newGame(Renderer* render);
     }
     else if (input.compare("2"))
     {
-      loadGame(render);
+      loadGame(Renderer* render);
     }
     else if (input.compare("3"))
     {
-      showStudentInfo(render);
+      showStudentInfo(Renderer* render);
     }
     else if (input.compare("4"))
     {
