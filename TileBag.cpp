@@ -1,12 +1,17 @@
 #include "TileBag.h"
-#include <random>
+
+#include <cstdlib>
+#include <ctime>
+//#include <iostream>
 
 using std::string;
+//using std::cout;
+//using std::endl;
 
 TileBag::TileBag(){
 	tileBag = new LinkedList();
 	initialiseTiles();
-	//tileBag.shuffleBag();
+	shuffleBag();
 }
 
 TileBag::~TileBag(){}					//deconstructor
@@ -48,27 +53,13 @@ void TileBag::initialiseTiles(){
 	}
 }
 
-void TileBag::shuffleBag()
-{
-	/*
-
-	FOR(int index = 0; index < tileBag.getSize(); index++)
-		int randomNumber = //RANDOM NUMBER FROM 0 TO tileBag.getSize() - 1
-		tileBag.shuffleTiles(index, randomNumber);
-
-//RAPH CODE START
-	int min = 1;
-        int max = tileBag.getSize();
-
-        std::random_device engine;
-        std::uniform_int_distribution<int> uniform_dist(min, max);
-
-        int value = -1;
-        for (int i = 0; i != tileBag.getSize(); ++i) {
-        value = uniform_dist(engine);
-//RAPH CODE END
-
-	*/
+void TileBag::shuffleBag(){
+	srand((unsigned)time(0));
+	int randNum;
+	for(int i=0;i<tileBag->getSize();i++){
+		int randNum = (rand()%72);
+		tileBag->shuffleTiles(i,randNum);
+	}
 }
 
 string TileBag::toString(){
@@ -108,3 +99,24 @@ tileBag.addBack(tile);
 	//string = string + tile.toString();
 	//string = string + ",";
 //END FOR LOOP
+
+/*
+shuffleBag
+
+FOR(int index = 0; index < tileBag.getSize(); index++)
+	int randomNumber = //RANDOM NUMBER FROM 0 TO tileBag.getSize() - 1
+	tileBag.shuffleTiles(index, randomNumber);
+
+//RAPH CODE START
+int min = 1;
+			int max = tileBag.getSize();
+
+			std::random_device engine;
+			std::uniform_int_distribution<int> uniform_dist(min, max);
+
+			int value = -1;
+			for (int i = 0; i != tileBag.getSize(); ++i) {
+			value = uniform_dist(engine);
+//RAPH CODE END
+
+*/
