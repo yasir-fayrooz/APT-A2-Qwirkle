@@ -14,7 +14,9 @@ TileBag::TileBag(){
 	shuffleBag();
 }
 
-TileBag::~TileBag(){}					//deconstructor
+TileBag::~TileBag(){
+	delete tileBag;
+}
 
 int TileBag::getSize(){
 	return tileBag->getSize();
