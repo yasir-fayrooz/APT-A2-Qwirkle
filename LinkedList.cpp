@@ -5,7 +5,12 @@
 LinkedList::LinkedList() : head(nullptr), size(0) {}
 
 //deconstructor
-LinkedList::~LinkedList() {}
+LinkedList::~LinkedList() {
+	/*
+	FOR each Node
+		DELETE node
+	*/
+}
 
 int LinkedList::getSize(){
 	return size;

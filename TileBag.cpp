@@ -56,10 +56,15 @@ void TileBag::initialiseTiles(){
 }
 
 void TileBag::shuffleBag(){
-	srand((unsigned)time(0));
-	int randNum;
-	for(int i=0;i<tileBag->getSize();i++){
-		int randNum = (rand()%72);
+	int min = 0;
+	int max = tileBag->getSize() - 1;
+
+	std::random_device engine;
+	std::uniform_int_distribution<int> uniform_dist(min, max);
+
+	int randNum = -1;
+	for (int i = 0; i != tileBag->getSize(); ++i) {
+		randNum = uniform_dist(engine);
 		tileBag->shuffleTiles(i,randNum);
 	}
 }
