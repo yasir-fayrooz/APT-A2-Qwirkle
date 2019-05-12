@@ -1,7 +1,6 @@
 #include "TileBag.h"
 
-#include <cstdlib>
-#include <ctime>
+#include <random>
 //#include <iostream>
 
 using std::string;
