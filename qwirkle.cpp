@@ -85,7 +85,6 @@ void newGame(Renderer* render)
 
 //validates player name to specification after getting input...
 bool playerValidation(string name){
-  cout << "validate player" << endl;
   bool isValid = true;
   for(int i=0;i<name.size();i++){
     if((int) name[i] < 65  || ((int) name[i] > 90 && (int) name[i] < 97) || (int) name[i] > 122){
