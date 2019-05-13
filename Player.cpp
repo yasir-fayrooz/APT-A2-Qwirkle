@@ -1,10 +1,15 @@
 #include "Player.h"
 
+using std::string;
+
 Player::Player(string name, TileBag* tileBag)
 {
 	//sets name to this.name;
+	name = this->name;
 	//sets score to 0
+	int score = 0;
 	//sets playerHand to new PlayerHand(tileBag);
+	PlayerHand* playerHand = new PlayerHand(tileBag);
 }
 
 string Player::getName()
@@ -22,18 +27,19 @@ int Player::getScore()
 void Player::setScore(int score)
 {
 	//finished
-	this.score = score;
+	this->score = score;
 }
 
 string Player::getPlayerHandString()
 {
-	//pseudocode done
-	return "";
+	//finished
+	return playerHand.toString();
 }
 
 void Player::replaceTile(char color, int shape, TileBag* tileBag)
 {
-	//pseudocode done
+	//finished
+	PlayerHand* playerHand->replaceTile(color, shape, tileBag);
 }
 
 PlayerHand Player::getPlayerHand()
@@ -44,8 +50,8 @@ PlayerHand Player::getPlayerHand()
 
 bool Player::checkIfTileInHand(char color, int shape)
 {
-	//pseudocode done
-	return false;
+	//finished
+	return playerHand->checkIfTileInHand(color, shape);
 }
 
 void Player::deleteTileHand(char color, int shape)
@@ -59,27 +65,19 @@ void Player::drawTile(TileBag* tileBag)
 }
 
 /* INSTANCE VARIABLES / FIELDS
-
-   string       name;
-   int          score;
-   PlayerHand   playerHand;
-
+string       name;
+int          score;
+PlayerHand   playerHand;
 */
 
 /* getPlayerHandString() method pseudocode
-
 return playerHand.toString();
-
 */
 
 /* replaceTile(char color, int shape, TileBag* tileBag) method pseudocode
-
 playerHand.replaceTile(color, shape, tileBag);
-
 */
 
 /* checkIfTileInHand(char color, int shape) method pseudocode
-
 return playerHand.checkIfTileInHand(color, shape);
-
 */
