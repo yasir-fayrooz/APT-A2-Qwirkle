@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
+#include <fstream>
 
 using std::string;
 
@@ -14,21 +15,21 @@ void loadGame(Renderer* render);
 void showStudentInfo(Renderer* render);
 bool quit();
 bool playerValidation(string name);
-void fileValidation(string fileName);
+bool fileValidation(string fileName);
 
 int main(void) {
-  
+
   Renderer* render = new Renderer(); // instance
   bool quitGame = false;
-  
+
   while(quitGame == false)
   {
     render->clearConsole();
     render->mainMenu();
-    
-    
+
+
     //This method will render the main menu
-    
+
     string input = render->getInput();
     //This method will get input and return the string.
     if (input.compare("1"))
@@ -51,7 +52,7 @@ int main(void) {
     {
       throw std::runtime_error("Not valid Entry");
     }
-    
+
     std::cout << "Welcome to Qwirkle!" << "\n" << "-------------------" << "\n";
   }
   return EXIT_SUCCESS;
@@ -62,19 +63,19 @@ void newGame(Renderer* render)
   render->clearConsole();
   string player1 = 0;
   string player2 = 0;
-  
+
   while (playerValidation(player1) == false && render->getQuit() == false)
   {
     render->playerName("Player 1"); //This will render player 1 to enter his name
     player1 = render->getInput();
   }
-  
+
   while (playerValidation(player2) == false && render->getQuit() == false)
   {
     render->playerName("Player 2"); //This will render player 2 to enter his name
     player2 = render->getInput();
   }
-  
+
   if(render->getQuit() == false)
   {
     GameEngine* gameEngine = new GameEngine(player1, player2);
@@ -92,14 +93,14 @@ void loadGame(Renderer* render)
 {
   render->clearConsole();
   String fileName = 0;
-  
+
   while(fileValidation(fileName) == false && render->getQuit() == false)
   {
     render->loadGame();
     //This will render line to enter file name to load
     fileName = render->getInput();
   }
-  
+
   if(render->getQuit() == false)
   {
     GameEngine* gameEngine = new GameEngine(fileName);
@@ -111,18 +112,24 @@ void showStudentInfo(Renderer* render)
 {
   render->clearConsole();
   // clear console
-  
+
   render->showStudentInfo();
   //print names and info
-  
+
   string input = render->getInput();
   // return to main menu
 }
 
-void fileValidation(string fileName)
+//checks if relative file path name exists
+bool fileValidation(string fileName)
 {
-  //checks if relative file path name exists
-  return false;
+  bool isExist = true;
+  string file = fileName + ".txt";
+  std::ifstream input(file);
+  if(input.fail()){
+    isExist = false;
+  }
+  return isExist;
 }
 
 bool quit()

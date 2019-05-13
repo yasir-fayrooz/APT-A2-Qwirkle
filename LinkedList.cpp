@@ -8,6 +8,7 @@ LinkedList::LinkedList() : head(nullptr), size(0) {}
 LinkedList::~LinkedList() {
 	/*
 	FOR each Node
+		GET  next
 		DELETE node
 	*/
 }
