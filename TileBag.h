@@ -1,5 +1,5 @@
-#ifndef COSC_ASS_TWO_TILEBAG
-#define COSC_ASS_TWO_TILEBAG
+#ifndef ASSIGN2_TILEBAG_H
+#define ASSIGN2_TILEBAG_H
 
 #include "Tile.h"
 #include "LinkedList.h"
@@ -28,4 +28,4 @@ private:
 
 };
 
-#endif // COSC_ASS_TWO_TILEBAG
+#endif // ASSIGN2_TILEBAG_H
