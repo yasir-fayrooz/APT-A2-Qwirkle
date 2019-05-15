@@ -7,9 +7,9 @@ Player::Player(string name, TileBag* tileBag)
 	//sets name to this.name;
 	name = this->name;
 	//sets score to 0
-	int score = 0;
+	this->score = 0;
 	//sets playerHand to new PlayerHand(tileBag);
-	PlayerHand* playerHand = new PlayerHand(tileBag);
+	this->playerHand = new PlayerHand(tileBag);
 }
 
 string Player::getName()
@@ -33,13 +33,13 @@ void Player::setScore(int score)
 string Player::getPlayerHandString()
 {
 	//finished
-	return playerHand.toString();
+	return playerHand->toString();
 }
 
 void Player::replaceTile(char color, int shape, TileBag* tileBag)
 {
 	//finished
-	PlayerHand* playerHand->replaceTile(color, shape, tileBag);
+	playerHand->replaceTile(color, shape, tileBag);
 }
 
 PlayerHand Player::getPlayerHand()
@@ -56,12 +56,12 @@ bool Player::checkIfTileInHand(char color, int shape)
 
 void Player::deleteTileHand(char color, int shape)
 {
-	playerHand.deleteTileHand(color, shape);
+	playerHand->deleteTileHand(color, shape);
 }
 
 void Player::drawTile(TileBag* tileBag)
 {
-	playerHand.drawTile(tileBag);
+	playerHand->drawTile(tileBag);
 }
 
 /* INSTANCE VARIABLES / FIELDS
