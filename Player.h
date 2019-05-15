@@ -1,3 +1,6 @@
+#ifndef ASSIGN2_PLAYER_H
+#define ASSIGN2_PLAYER_H
+
 #include "PlayerHand.h"
 #include "TileBag.h"
 
@@ -25,3 +28,5 @@ private:
 
 //methods
 };
+
+#endif //ASSIGN2_PLAYER_H
