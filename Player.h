@@ -21,7 +21,7 @@ private:
 //instance variables
    string       name;
    int          score;
-   PlayerHand   playerHand;
+   PlayerHand*   playerHand;
 
 //methods
 };
