@@ -7,9 +7,9 @@ Player::Player(string name, TileBag* tileBag)
 	//sets name to this.name;
 	name = this->name;
 	//sets score to 0
-	int score = 0;
+	this->score = 0;
 	//sets playerHand to new PlayerHand(tileBag);
-	PlayerHand* playerHand = new PlayerHand(tileBag);
+	playerHand = new PlayerHand(tileBag);
 }
 
 string Player::getName()
@@ -39,7 +39,7 @@ string Player::getPlayerHandString()
 void Player::replaceTile(char color, int shape, TileBag* tileBag)
 {
 	//finished
-	PlayerHand* playerHand->replaceTile(color, shape, tileBag);
+	playerHand.replaceTile(color, shape, tileBag);
 }
 
 PlayerHand Player::getPlayerHand()
@@ -51,7 +51,7 @@ PlayerHand Player::getPlayerHand()
 bool Player::checkIfTileInHand(char color, int shape)
 {
 	//finished
-	return playerHand->checkIfTileInHand(color, shape);
+	return playerHand.checkIfTileInHand(color, shape);
 }
 
 void Player::deleteTileHand(char color, int shape)
