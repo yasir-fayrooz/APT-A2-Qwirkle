@@ -1,3 +1,6 @@
+#ifndef ASSIGN2_TILEBAG_H
+#define ASSIGN2_TILEBAG_H
+
 #include "Tile.h"
 #include "LinkedList.h"
 
@@ -24,3 +27,5 @@ private:
 //methods
 
 };
+
+#endif // ASSIGN2_TILEBAG_H
