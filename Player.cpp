@@ -5,7 +5,7 @@ using std::string;
 Player::Player(string name, TileBag* tileBag)
 {
 	//sets name to this.name;
-	name = this->name;
+	this->name = name;
 	//sets score to 0
 	this->score = 0;
 	//sets playerHand to new PlayerHand(tileBag);
