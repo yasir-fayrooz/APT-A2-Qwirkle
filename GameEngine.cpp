@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 #include "TileCodes.h"
 #include <fstream>
+#include <sstream>
 
 using std::stoi;
 
@@ -62,12 +63,12 @@ void GameEngine::startGame(Renderer* render)
 		{
 			string inputType = input.substr(0, input.find(" "));
 
-			if(inputType.compare("replace"))
+			if(inputType.compare("replace") == 0)
 			{
 				replace(input);
 				player1Turn = !player1Turn;
 			}
-			else if(inputType.compare("place"))
+			else if(inputType.compare("place") == 0)
 			{
 				place(input);
 				player1Turn = !player1Turn;
@@ -112,7 +113,7 @@ bool GameEngine::validation(string input)
 		bool validatedPlayerHand = playerHandValidation(inputType, color, shape);
 		bool validatedBoardPos = boardPosValidation(color, shape, xPos, yPos);
 
-		if(validatedPlayerHand == true && inputType.compare("replace"))
+		if(validatedPlayerHand == true && inputType.compare("replace") == 0)
 		{
 			validatedMove = true;
 		}
@@ -218,19 +219,19 @@ int GameEngine::pointsScored(int xPos, int yPos, string side)
 		pointsScored++;
 		qwirkleCheck++;
 
-		if(side.compare("down"))
+		if(side.compare("down") == 0)
 		{
 			newX = xPos + qwirkleCheck;
 		}
-		else if(side.compare("up"))
+		else if(side.compare("up") == 0)
 		{
 			newX = xPos - qwirkleCheck;
 		}
-		else if(side.compare("left"))
+		else if(side.compare("left") == 0)
 		{
 			newY = yPos - qwirkleCheck;
 		}
-		else if(side.compare("right"))
+		else if(side.compare("right") == 0)
 		{
 			newY = yPos + qwirkleCheck;
 		}
@@ -271,14 +272,14 @@ bool GameEngine::inputValidation(string input)
 	
 	if(input.length() == placeCommandLength || input.length() == placeCommandLength2x)
 	{
-		if(input.substr(0,5).compare("place") && spaceCount(input) == 3 && input.substr(9,11).compare("at"))
+		if(input.substr(0,5).compare("place") == 0 && spaceCount(input) == 3 && input.substr(9,11).compare("at") == 0)
 		{
 			validated = true;
 		}
 	}
 	else if(input.length() == replaceCommandLength)
 	{
-		if(input.substr(0,7).compare("replace") && spaceCount(input) == 1)
+		if(input.substr(0,7).compare("replace") == 0 && spaceCount(input) == 1)
 		{
 			validated = true;
 		}
@@ -326,7 +327,7 @@ bool GameEngine::playerHandValidation(string inputType, char color, int shape)
 		}
 	}
 
-	if(inputType.compare("replace") && tileBag->getSize() == 0)
+	if(inputType.compare("replace") == 0 && tileBag->getSize() == 0)
 	{
 		validated = false;
 	}
@@ -501,9 +502,9 @@ bool GameEngine::checkSaveGame(string input)
 {
 	bool save = false;
 
-	if(input.substr(0, 4).compare("save"))
+	if(input.substr(0, 4).compare("save") == 0)
 	{
-		if(input.substr(4, 5).compare(" ") && spaceCount(input) == 1)
+		if(input.substr(4, 5).compare(" ") == 0 && spaceCount(input) == 1)
 		{
 			if(input.length() > 5)
 			{
@@ -601,14 +602,14 @@ void GameEngine::loadGame(string fileName)
 		string tempString;
 		std::getline(inFile, tempString);
 		
-		if(tempString.compare(" "))
+		if(tempString.compare(" ") == 0)
 		{
 			endBoard = true;
 			xSize--;
 		}
 		else
 		{
-			boardString = boardString tempString + "\n";
+			boardString = boardString + tempString + "\n";
 			xSize++;
 		}
 	}
@@ -628,9 +629,11 @@ void GameEngine::loadGame(string fileName)
 
 void GameEngine::loadBoardTiles(string boardString, int xSize)
 {
+	std::istringstream iss(boardString);
+
 	string line;
-	std::getline(boardString, line);
-	std::getline(boardString, line);
+	std::getline(iss, line);
+	std::getline(iss, line);
 
 	int iterator = 0;
 	int xPos = -1;
@@ -638,22 +641,22 @@ void GameEngine::loadBoardTiles(string boardString, int xSize)
 	
 	for(int i = 0; i < xSize; i++)
 	{
-		std::getline(boardString, line);
+		std::getline(iss, line);
 		xPos++;
 		iterator = 0;
+		std::cout << line << std::endl;
 
-		while(iterator <= line.length())
+		while(iterator < line.length() - 3)
 		{
-			int tileBoundry1 = line.find('|', iterator);
-			int tileBoundry2 = line.find('|', tileBoundry1 + 1);
+			int tileBoundry = line.find('|', iterator);
 			yPos++;
-			iterator = tileBoundry2 + 1;
+			iterator = tileBoundry + 1;
 
-			if(line.substr((tileBoundry1 + 1), (tileBoundry2 - 1)).compare("  ") != 0)
+			if(line.substr((tileBoundry + 1), 2).compare("  ") != 0)
 			{
-				string tile = line.substr((tileBoundry1 + 1), (tileBoundry2 - 1));
+				string tile = line.substr((tileBoundry + 1), 2);
 				char color = tile[0];
-				int shape = stoi(tile[1]);
+				char shape = tile[1];
 
 				board->placeTile(color, shape, xPos, yPos);
 			}
