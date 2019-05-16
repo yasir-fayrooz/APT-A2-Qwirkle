@@ -42,7 +42,7 @@ void Player::replaceTile(char color, int shape, TileBag* tileBag)
 	playerHand->replaceTile(color, shape, tileBag);
 }
 
-PlayerHand Player::getPlayerHand()
+PlayerHand* Player::getPlayerHand()
 {
 	//finished
 	return playerHand;
