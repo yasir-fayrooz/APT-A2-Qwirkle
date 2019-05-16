@@ -1,0 +1,6 @@
+TODO:
+
+1.fixing .compare() == OR != 0 in all classes
+2.qwirkle.cpp after loading, start game.
+3.render->saveGame();
+4.

@@ -38,6 +38,12 @@ void GameEngine::startGame(Renderer* render)
       		qwirkle = false;
     	}
 
+		if(saveGame == true)
+		{
+			render->saveGame();
+			saveGame = false;
+		}
+
     	bool validation = false;
 		string input = NULL;
 
@@ -97,12 +103,12 @@ bool GameEngine::validation(string input)
 	if(validatedInput == true)
 	{
 		string inputType = input.substr(0, input.find(" "));
-		int firstSpace = input.find_first_of(" ");
-		int secondSpace = input.find(" ", firstSpace + 1);
-		int thirdSpace = input.find(" ", secondSpace + 1);
+		int firstSpace = input.find_first_of(" ") + 1;
+		int secondSpace = input.find(" ", firstSpace + 1) + 1;
+		int thirdSpace = input.find(" ", secondSpace + 1) + 1;
 		
-		string tile = input.substr(firstSpace, input.find(" ", firstSpace + 1));
-		string position = input.substr(thirdSpace, input.length());
+		string tile = input.substr(firstSpace, 2);
+		string position = input.substr(thirdSpace, (input.length() - 12));
 
 		char color = tile[0];
 		int shape = tile[1];
@@ -128,8 +134,8 @@ bool GameEngine::validation(string input)
 
 void GameEngine::replace(string input)
 {
-	int firstSpace = input.find_first_of(" ");
-	string tile = input.substr(firstSpace, input.find(" ", firstSpace + 1));
+	int firstSpace = input.find_first_of(" ") + 1;
+	string tile = input.substr(firstSpace, 2);
 
 	char color = tile[0];
 	int shape = stoi(tile[1]);
@@ -146,18 +152,18 @@ void GameEngine::replace(string input)
 
 void GameEngine::place(string input)
 {
-	int firstSpace = input.find_first_of(" ");
-	int secondSpace = input.find(" ", firstSpace + 1);
-	int thirdSpace = input.find(" ", secondSpace + 1);
+	int firstSpace = input.find_first_of(" ") + 1;
+	int secondSpace = input.find(" ", firstSpace) + 1;
+	int thirdSpace = input.find(" ", secondSpace) + 1;
 	
-	string tile = input.substr(firstSpace, input.find(" ", firstSpace + 1));
-	string position = input.substr(thirdSpace, input.length());
+	string tile = input.substr(firstSpace, 2);
+	string position = input.substr(thirdSpace, (input.length() - 12));
 
 	char color = tile[0];
-	int shape = tile[1];
+	int shape = stoi(tile[1]);
 
 	int xPos = position[0] % 65; //ASCII VALUE = 0 FOR 'A', 1 FOR 'B'...etc..
-	int yPos = stoi(position.substr(0, position.length())); //convert str to int
+	int yPos = stoi(position.substr(1, position.length())); //convert str to int
 
 	board->placeTile(color, shape, xPos, yPos);
 
