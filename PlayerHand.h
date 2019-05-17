@@ -22,7 +22,7 @@ public:
 
 private:
 //instance variables
-   LinkedList playerHand;
+   LinkedList* playerHand;
 
 //methods
 
