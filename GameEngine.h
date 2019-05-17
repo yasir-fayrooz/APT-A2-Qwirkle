@@ -1,5 +1,7 @@
 #include <string>
-#include "Renderer.h"
+#include "Board.h"
+#include "TileBag.h"
+#include "Player.h"
 
 using std::string;
 

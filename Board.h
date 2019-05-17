@@ -13,7 +13,7 @@ public:
    Board(int xSize, int ySize);
 
    void placeTile(char color, int shape, int xPos, int yPos);
-   Tile getTile(int xPos, int yPos);
+   Tile* getTile(int xPos, int yPos);
    bool isEmptyTile(int xPos, int yPos);
    int  getTilesPlaced();
 
@@ -23,7 +23,7 @@ public:
    string toString();
 
 private:
-   Tile tile[6][6];
+   Tile* tile[6][6];
    int  tilesPlaced;
    int  xSize;
    int  ySize;

@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "GameEngine.h"
 
 #include <iostream>
 #include <string>

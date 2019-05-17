@@ -5,7 +5,7 @@
 
 class Player {
 public:
-   Player(string player1name, string player2name);
+   Player(string player1name, TileBag* tileBag);
    Player(string name, int score, string playerHandString);
 
    string       getName();
@@ -13,7 +13,7 @@ public:
    void         setScore(int score);
    string       getPlayerHandString();
    void         replaceTile(char color, int shape, TileBag* tileBag)
-   PlayerHand   getPlayerHand();
+   PlayerHand*   getPlayerHand();
    bool         checkIfTileInHand(char color, int shape);
    void         drawTile(TileBag* tileBag);
    void         deleteTileHand(char color, int shape);

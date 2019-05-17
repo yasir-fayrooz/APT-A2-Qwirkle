@@ -1,5 +1,3 @@
-#include "Player.h"
-#include "Board.h"
 
 #include <string>
 
@@ -16,6 +14,7 @@ public:
 	void board(Board* board);
 	void playerHand(bool player1Turn, Player* player1, Player* player2);
 	void saveGame();
+	void inputValidationError();
 
 	string getInput();
 

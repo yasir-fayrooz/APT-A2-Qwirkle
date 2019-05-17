@@ -1,7 +1,6 @@
 #ifndef ASSIGN2_PLAYERHAND_H
 #define ASSIGN2_PLAYERHAND_H
 
-#include "TileBag.h"
 #include "LinkedList.h"
 
 #include <string>

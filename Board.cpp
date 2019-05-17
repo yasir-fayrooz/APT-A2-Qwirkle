@@ -11,14 +11,14 @@ Board::Board()
 
 Board::Board(int xSize, int ySize)
 {
-	this.xSize = xSize;
-	this.ySize = ySize;
+	this->xSize = xSize;
+	this->ySize = ySize;
 }
 
 
 void Board::placeTile(char color, int shape, int xPos, int yPos)
 {
-	tile[xPos][yPos] = new Tile(color, shape);
+	*tile[xPos][yPos] = new Tile(color, shape);
 	Board::checkAndExpandBoard(xPos, yPos);
 	
 	tilesPlaced++;
@@ -45,7 +45,7 @@ void Board::checkAndExpandBoard(xPos, yPos)
 	
 }
 
-Tile Board::getTile(int xPos, int yPos)
+Tile* Board::getTile(int xPos, int yPos)
 {
 	return tile[xPos][yPos];
 }
@@ -54,7 +54,7 @@ bool Board::isEmptyTile(int xPos, int yPos)
 {
 	bool empty = false;
 	
-	if(tile[xPos][yPos] == NULL)
+	if(tile[xPos][yPos] == nullptr)
 	{
 		empty = true;
 	}

@@ -122,6 +122,13 @@ void Renderer::saveGame()
 	std::cout << "Game saved successfully..\n";
 }
 
+void Renderer::inputValidationError()
+{
+	std::cout << "Input error! Ensure these conditions are met:\n";
+	std::cout << "1. case sensitive command of place [tile] at [position]\n";
+	std::cout << "2. case sensitive command of replace [tile]\n";
+	std::cout << "3. the tile is in your hand and there are enough tiles in bag to replace\n";
+}
 
 /* INSTANCE VARIABLES / FIELDS
 
