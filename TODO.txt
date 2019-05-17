@@ -1,10 +1,12 @@
 TODO:
 
-1.fixing .compare() == OR != 0 in all classes
-2.qwirkle.cpp after loading, start game.
-3.render->saveGame();
+1.fixing .compare() == OR != 0 in all classes ---DONE
+2.qwirkle.cpp after loading, start game. ---DONE
+3.render->saveGame(); ---DONE
 4.board->toString()
-5.Board constructor that takes xSize and ySize ints
+5.Board constructor that takes xSize and ySize ints ---DONE
 6.TileBag constructor that takes tileBagString and adds tile strings to the tileBag linkedlist.
-7.Player constructor that takes name, score, playerHandString and sets playerHand to new PlayerHand(playerHandString)
+7.Player constructor that takes name, score, playerHandString and sets playerHand to new PlayerHand(playerHandString) ---DONE
 8.PlayerHand constructor that takes playerHandString and adds tile strings to the playerHand linkedlist.
+
+not done yet: 4, 6, 8

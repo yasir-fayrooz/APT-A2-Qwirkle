@@ -5,10 +5,12 @@
 #include "LinkedList.h"
 
 #include <string>
+using std::string;
 
 class TileBag {
 public:
    TileBag();
+   TileBag(string tileBagString);
    ~TileBag();
 
    //real methods

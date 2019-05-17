@@ -1,14 +1,11 @@
 #include "Renderer.h"
 
 #include <iostream>
+#include <stdlib.h>
 
-//MISC METHODS
-
-bool quit = false;
-string letters[26] = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 void Renderer::clearConsole()
 {
-	
+	system("cls");
 }
 
 String Renderer::getInput()
@@ -16,7 +13,7 @@ String Renderer::getInput()
 	string input;
 	std::cout << "> ";
 	std::cin >> input;
-	if (input == "quit")
+	if (input.compare("quit") == 0)
 	{
 		quit = true;
 	}
@@ -32,6 +29,8 @@ bool Renderer::getQuit()
 
 void Renderer::mainMenu()
 {
+	quit = false;
+    std::cout << "Welcome to Qwirkle!" << "\n" << "-------------------" << "\n";
 	std::cout << "Menu\n";
 	std::cout << "----\n";
 	std::cout << "1. New Game\n";
@@ -85,46 +84,14 @@ void Renderer::playerTurn(bool player1Turn, string player1Name, string player2Na
 	}
 }
 
-void Renderer::playerScore(Player player)
+void Renderer::playerScore(Player* player)
 {
-	std::cout << ("Score for " + player.getName() + ": " + player.getScore() + "\n");
+	std::cout << ("Score for " + player->getName() + ": " + player->getScore() + "\n");
 }
 
-void Renderer::board(Board board)
+void Renderer::board(Board* board)
 {
-	int boardX = board.getXSize();
-	int boardY = board.getYSize();
-	while (int i = 0; i < boardX; i++)
-	{
-		if (i == 0) 
-		{
-			std::cout << ("\n   ");
-		}
-		std::cout << (i + "  ");
-	}
-	while (int z = 0; z < boardX; z++)
-	{
-		if (z == 0)
-		{
-			std::cout << ("\n  ----");
-		}
-		std::cout << ("---");
-	}
-	while (int y = 0; y < boardY; y++)
-	{
-		std::cout << ("\n" + letters[y] + " |");
-		while (int x = 0; x < boardX; x++)
-		{
-			if (board.isEmptyTile(x, y) == true)
-			{
-				std::cout << ("  |");
-			}
-			else
-			{
-				std::cout << (board.getTile(x, y) + "|");
-			}
-		}
-	}
+	std::cout << board->toString() << std::endl;
 	/*
 	   0  1  2  3  4  5
 	  -------------------
@@ -138,16 +105,21 @@ void Renderer::board(Board board)
 
 }
 
-void Renderer::playerHand(bool player1Turn, Player player1, Player player2)
+void Renderer::playerHand(bool player1Turn, Player* player1, Player* player2)
 {
 	if (player1Turn == true)
 	{
-		std::cout << (player1.getPlayerHandString() + "\n");
+		std::cout << (player1->getPlayerHandString() + "\n");
 	}
 	else
 	{
-		std::cout << (player2.getPlayerHandString() + "\n");
+		std::cout << (player2->getPlayerHandString() + "\n");
 	}
+}
+
+void Renderer::saveGame()
+{
+	std::cout << "Game saved successfully..\n";
 }
 
 

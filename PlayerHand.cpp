@@ -15,6 +15,12 @@ PlayerHand::PlayerHand(TileBag* tileBag)
 	//drawTile(tileBag);
 }
 
+PlayerHand::PlayerHand(string playerHandString)
+{
+	//iterate through playerhandstring and add tiles to playerHand linkedlist
+}
+
+
 void PlayerHand::drawTile(TileBag* tileBag)
 {
 	playerHand.addback(tileBag.drawTileFront());

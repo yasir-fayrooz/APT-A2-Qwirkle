@@ -3,7 +3,6 @@
 #include <random>
 //#include <iostream>
 
-using std::string;
 //using std::cout;
 //using std::endl;
 
@@ -11,6 +10,12 @@ TileBag::TileBag(){
 	tileBag = new LinkedList();
 	initialiseTiles();
 	shuffleBag();
+}
+
+TileBag::TileBag(string tileBagString)
+{
+	//create new tilebag
+	//add each tile from the string to the tileBag
 }
 
 TileBag::~TileBag(){

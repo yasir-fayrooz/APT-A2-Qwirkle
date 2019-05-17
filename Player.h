@@ -6,6 +6,7 @@
 class Player {
 public:
    Player(string player1name, string player2name);
+   Player(string name, int score, string playerHandString);
 
    string       getName();
    int          getScore();

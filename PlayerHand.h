@@ -5,10 +5,12 @@
 #include "LinkedList.h"
 
 #include <string>
+using std::string;
 
 class PlayerHand {
 public:
    PlayerHand(TileBag* tileBag);
+   PlayerHand(string playerHandString);
 
    void     drawTile(TileBag* tileBag);
    void     deleteTileHand(char color, int shape);

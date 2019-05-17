@@ -9,6 +9,12 @@ Board::Board()
 	ySize = 6;
 }
 
+Board::Board(int xSize, int ySize)
+{
+	this.xSize = xSize;
+	this.ySize = ySize;
+}
+
 
 void Board::placeTile(char color, int shape, int xPos, int yPos)
 {
@@ -69,6 +75,49 @@ int Board::getXSize()
 int Board::getYSize()
 {
 	return ySize;
+}
+
+string Board::toString()
+{
+	string board = "";
+	/*
+
+	int boardX = board->getXSize();
+	int boardY = board->getYSize();
+	while (int i = 0; i < boardX; i++)
+	{
+		if (i == 0) 
+		{
+			std::cout << ("\n   ");
+		}
+		std::cout << (i + "  ");
+	}
+	while (int z = 0; z < boardX; z++)
+	{
+		if (z == 0)
+		{
+			std::cout << ("\n  ----");
+		}
+		std::cout << ("---");
+	}
+	while (int y = 0; y < boardY; y++)
+	{
+		std::cout << ("\n" + letters[y] + " |");
+		while (int x = 0; x < boardX; x++)
+		{
+			if (board->isEmptyTile(x, y) == true)
+			{
+				std::cout << ("  |");
+			}
+			else
+			{
+				std::cout << (board->getTile(x, y) + "|");
+			}
+		}
+	}
+
+	*/
+	return board;
 }
 
 /* INSTANCE VARIABLES

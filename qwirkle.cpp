@@ -32,19 +32,19 @@ int main(void) {
 
     string input = render->getInput();
     //This method will get input and return the string.
-    if (input.compare("1"))
+    if (input.compare("1") == 0)
     {
       newGame(Renderer* render);
     }
-    else if (input.compare("2"))
+    else if (input.compare("2") == 0)
     {
       loadGame(Renderer* render);
     }
-    else if (input.compare("3"))
+    else if (input.compare("3") == 0)
     {
       showStudentInfo(Renderer* render);
     }
-    else if (input.compare("4"))
+    else if (input.compare("4") == 0)
     {
       quitGame = quit();
     }
@@ -52,8 +52,6 @@ int main(void) {
     {
       throw std::runtime_error("Not valid Entry");
     }
-
-    std::cout << "Welcome to Qwirkle!" << "\n" << "-------------------" << "\n";
   }
   return EXIT_SUCCESS;
 }

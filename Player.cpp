@@ -12,6 +12,13 @@ Player::Player(string name, TileBag* tileBag)
 	this->playerHand = new PlayerHand(tileBag);
 }
 
+Player::Player(string name, int score, string playerHandString)
+{
+	this.name = name;
+	this.score = score;
+	playerHand = new PlayerHand(playerHandString);
+}
+
 string Player::getName()
 {
 	//finished
