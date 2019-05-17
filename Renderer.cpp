@@ -4,6 +4,8 @@
 
 //MISC METHODS
 
+bool quit = false;
+string letters[26] = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 void Renderer::clearConsole()
 {
 	
@@ -11,7 +13,14 @@ void Renderer::clearConsole()
 
 String Renderer::getInput()
 {
-	return "";
+	string input;
+	std::cout << "> ";
+	std::cin >> input;
+	if (input == "quit")
+	{
+		quit = true;
+	}
+	return input;
 }
 
 bool Renderer::getQuit()
@@ -23,44 +32,122 @@ bool Renderer::getQuit()
 
 void Renderer::mainMenu()
 {
-	quit = false;
+	std::cout << "Menu\n";
+	std::cout << "----\n";
+	std::cout << "1. New Game\n";
+	std::cout << "2. Load Game\n";	
+	std::cout << "3. Show student information\n";
+	std::cout << "4. Quit\n";
 }
 
 void Renderer::playerName(string player)
 {
-	
+	std::cout << ("Enter a name for " + player + "\n");
 }
 
 void Renderer::loadGame()
 {
-	
+	std::cout << "Enter the filename from which load a game\n";
 }
 
 void Renderer::showStudentInfo()
 {
-	
+	std::cout << "----------------------------------\n";
+	std::cout << "Name: Yasir Fayrooz Ali\n";
+	std::cout << "Student ID: s3742162\n";
+	std::cout << "Email: s3742162@student.rmit.edu.au\n";
+	std::cout << "\n";
+	std::cout << "Name: Raphael McCarthy\n";
+	std::cout << "Student ID: s3544758\n";
+	std::cout << "Email: s3544758@student.rmit.edu.au\n";
+	std::cout << "\n";
+	std::cout << "Name: Jeremy Richards\n";
+	std::cout << "Student ID: s3721762\n";
+	std::cout << "Email: s3721762@student.rmit.edu.au\n";
+	std::cout << "\n";
+	std::cout << "Name: Ido Yaron\n";
+	std::cout << "Student ID: s3708691\n";
+	std::cout << "Email: s3708691@student.rmit.edu.au\n";
+	std::cout << "----------------------------------\n";
 }
 
 //GameEngine METHODS
 
 void Renderer::playerTurn(bool player1Turn, string player1Name, string player2Name)
 {
-	
+	if (player1Turn == true)
+	{
+		std::cout << (player1Name + " it's your turn\n");
+	}
+	else
+	{
+		std::cout << (player2Name + " it's your turn\n");
+	}
 }
 
 void Renderer::playerScore(Player player)
 {
-	
+	std::cout << ("Score for " + player.getName() + ": " + player.getScore() + "\n");
 }
 
 void Renderer::board(Board board)
 {
-	//this will be a bit difficult to render but not too difficult.
+	int boardX = board.getXSize();
+	int boardY = board.getYSize();
+	while (int i = 0; i < boardX; i++)
+	{
+		if (i == 0) 
+		{
+			std::cout << ("\n   ");
+		}
+		std::cout << (i + "  ");
+	}
+	while (int z = 0; z < boardX; z++)
+	{
+		if (z == 0)
+		{
+			std::cout << ("\n  ----");
+		}
+		std::cout << ("---");
+	}
+	while (int y = 0; y < boardY; y++)
+	{
+		std::cout << ("\n" + letters[y] + " |");
+		while (int x = 0; x < boardX; x++)
+		{
+			if (board.isEmptyTile(x, y) == true)
+			{
+				std::cout << ("  |");
+			}
+			else
+			{
+				std::cout << (board.getTile(x, y) + "|");
+			}
+		}
+	}
+	/*
+	   0  1  2  3  4  5
+	  -------------------
+	A |  |  |  |  |  |  |
+	B |  |  |B4|B6|B5|  |
+	C |  |  |R4|  |G5|  |
+	D |  |Y1|Y4|Y2|  |  |
+	E |  |  |P4|  |  |  |
+	F |  |  |  |  |  |  |
+	*/
+
 }
 
-void Renderer::playerHand(bool player1Turn, Player player, Player player)
+void Renderer::playerHand(bool player1Turn, Player player1, Player player2)
 {
-	
+	if (player1Turn == true)
+	{
+		std::cout << (player1.getPlayerHandString() + "\n");
+	}
+	else
+	{
+		std::cout << (player2.getPlayerHandString() + "\n");
+	}
 }
 
 
