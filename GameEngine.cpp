@@ -278,7 +278,7 @@ bool GameEngine::inputValidation(string input)
 	
 	if(input.length() == placeCommandLength || input.length() == placeCommandLength2x)
 	{
-		if(input.substr(0,5).compare("place") == 0 && spaceCount(input) == 3 && input.substr(9,11).compare("at") == 0)
+		if(input.substr(0,5).compare("place") == 0 && spaceCount(input) == 3 && input.substr(9,2).compare("at") == 0)
 		{
 			validated = true;
 		}
@@ -333,7 +333,7 @@ bool GameEngine::playerHandValidation(string inputType, char color, int shape)
 		}
 	}
 
-	if(inputType.compare("replace") == 0 && tileBag->getSize() == 0)
+	if(tileBag->getSize() == 0 && inputType.compare("replace") == 0)
 	{
 		validated = false;
 	}
@@ -436,7 +436,8 @@ bool GameEngine::validPlacing(char color, int shape, int xPos, int yPos)
 
 	if(nearIllegalPiece == false)
 	{
-		if(board->getTile(xPos + 1, yPos) == nullptr &&  //Checks to see it must be placed near a piece
+		//Checks to see it must be placed near a piece
+		if(board->getTile(xPos + 1, yPos) == nullptr &&
 		   board->getTile(xPos - 1, yPos) == nullptr &&
 		   board->getTile(xPos, yPos + 1) == nullptr &&
 		   board->getTile(xPos, yPos - 1) == nullptr && 
@@ -510,7 +511,7 @@ bool GameEngine::checkSaveGame(string input)
 
 	if(input.substr(0, 4).compare("save") == 0)
 	{
-		if(input.substr(4, 5).compare(" ") == 0 && spaceCount(input) == 1)
+		if(input.substr(4, 1).compare(" ") == 0 && spaceCount(input) == 1)
 		{
 			if(input.length() > 5)
 			{
@@ -650,7 +651,6 @@ void GameEngine::loadBoardTiles(string boardString, int xSize)
 		std::getline(iss, line);
 		xPos++;
 		iterator = 0;
-		std::cout << line << std::endl;
 
 		while(iterator < line.length() - 3)
 		{
@@ -662,7 +662,7 @@ void GameEngine::loadBoardTiles(string boardString, int xSize)
 			{
 				string tile = line.substr((tileBoundry + 1), 2);
 				char color = tile[0];
-				char shape = tile[1];
+				int shape = stoi(tile[1]);
 
 				board->placeTile(color, shape, xPos, yPos);
 			}
