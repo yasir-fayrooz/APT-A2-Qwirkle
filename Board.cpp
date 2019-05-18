@@ -78,7 +78,7 @@ int Board::getYSize()
 
 string Board::toString()
 {
-	string board = "";
+	string board = "THIS IS WHERE THE BOARD SHOULD RENDER UNIMPLEMENTED YET";
 	/*
 
 	int boardX = board->getXSize();

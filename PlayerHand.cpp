@@ -59,11 +59,11 @@ string PlayerHand::toString()
 	{
 		if (i == 0)
 		{
-			hand.append(std::to_string(playerHand->get(i)->getColor() + playerHand->get(i)->getShape()));
+			hand.append(playerHand->get(i)->toString());
 		}
 		else
 		{
-			hand.append(", " + std::to_string(playerHand->get(i)->getColor() + playerHand->get(i)->getShape()));
+			hand.append(", " + playerHand->get(i)->toString());
 		}
 	}
 	return hand;

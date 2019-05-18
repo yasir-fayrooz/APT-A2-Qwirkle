@@ -14,7 +14,7 @@ GameEngine::GameEngine(string player1name, string player2name)
 	board = new Board();
 	tileBag = new TileBag();
 	players[0] = new Player(player1name, tileBag);
-	players[1] = new Player(player1name, tileBag);
+	players[1] = new Player(player2name, tileBag);
 }
 
 GameEngine::GameEngine(string fileName)
@@ -44,7 +44,7 @@ void GameEngine::startGame(Renderer* render)
 		}
 
     	bool validation = false;
-		string input = NULL;
+		string input = "";
 
     	while(validation == false && render->getQuit() == false)
     	{

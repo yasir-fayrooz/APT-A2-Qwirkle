@@ -65,36 +65,42 @@ int main(void) {
 
 void newGame(Renderer* render)
 {
-  render->clearConsole();
-  string player1 = 0;
-  string player2 = 0;
+	render->clearConsole();
+	string player1 = "";
+	string player2 = "";
 
-  while (playerValidation(player1) == false && render->getQuit() == false)
-  {
-    render->playerName("Player 1"); //This will render player 1 to enter his name
-    player1 = render->getInput();
-  }
+	while (playerValidation(player1) == false && render->getQuit() == false)
+	{
+		render->playerName("Player 1"); //This will render player 1 to enter his name
+		player1 = render->getInput();
+	}
 
-  while (playerValidation(player2) == false && render->getQuit() == false)
-  {
-    render->playerName("Player 2"); //This will render player 2 to enter his name
-    player2 = render->getInput();
-  }
+	while (playerValidation(player2) == false && render->getQuit() == false)
+	{
+		render->playerName("Player 2"); //This will render player 2 to enter his name
+		player2 = render->getInput();
+	}
 
-  if(render->getQuit() == false)
-  {
-    GameEngine* gameEngine = new GameEngine(player1, player2);
-    gameEngine->startGame(render);
-  }
+	if(render->getQuit() == false)
+	{
+		GameEngine* gameEngine = new GameEngine(player1, player2);
+		gameEngine->startGame(render);
+	}
 }
 
 //validates player name to specification after getting input...
 bool playerValidation(string name){
-  bool isValid = true;
-  for(unsigned int i=0; i < name.size(); i++){
-    if((int) name[i] < 65  || ((int) name[i] > 90 && (int) name[i] < 97) || (int) name[i] > 122){
-      isValid = false;
-    }
+	bool isValid = true;
+  
+	if(name.length() < 2)
+	{
+	  isValid = false;
+	}
+  
+	for(unsigned int i=0; i < name.size(); i++){
+		if(name[i] < 65  || name[i] > 90){
+		  isValid = false;
+		}
   }
   return isValid;
 }
@@ -102,7 +108,7 @@ bool playerValidation(string name){
 void loadGame(Renderer* render)
 {
   render->clearConsole();
-  string fileName = 0;
+  string fileName = "";
 
   while(fileValidation(fileName) == false && render->getQuit() == false)
   {

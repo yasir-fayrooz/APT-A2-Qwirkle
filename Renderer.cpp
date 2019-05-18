@@ -41,12 +41,13 @@ void Renderer::mainMenu()
 
 void Renderer::playerName(string player)
 {
-	std::cout << "Enter a name for " << player << "\n";
+	std::cout << "Enter a name for " << player << "(or 'quit')\n";
+	std::cout << "Requirements: must be all capital letters only minimum length of 2\n";
 }
 
 void Renderer::loadGame()
 {
-	std::cout << "Enter the filename from which load a game\n";
+	std::cout << "Enter the filename from which load a game (or 'quit')\n";
 }
 
 void Renderer::showStudentInfo()
@@ -102,7 +103,6 @@ void Renderer::board(Board* board)
 	E |  |  |P4|  |  |  |
 	F |  |  |  |  |  |  |
 	*/
-
 }
 
 void Renderer::playerHand(bool player1Turn, Player* player1, Player* player2)

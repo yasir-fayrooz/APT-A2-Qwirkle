@@ -18,8 +18,7 @@ Shape Tile::getShape()
 
 string Tile::toString()
 {
-	//string s = color + shape;
-
-	//return s;
-	return "";
+	string color;
+	color = this->color;
+	return color + std::to_string(shape);
 }
