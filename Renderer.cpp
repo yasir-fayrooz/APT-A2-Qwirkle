@@ -5,7 +5,7 @@
 
 void Renderer::clearConsole()
 {
-	system("cls");
+	system("clear");
 }
 
 string Renderer::getInput()
