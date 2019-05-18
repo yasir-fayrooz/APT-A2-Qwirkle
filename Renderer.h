@@ -21,6 +21,7 @@ public:
 	void playerHand(bool player1Turn, Player* player1, Player* player2);
 	void saveGame();
 	void inputValidationError();
+	void renderMenuError();
 	void qwirkle();
 
 	string getInput();

@@ -135,6 +135,11 @@ void Renderer::qwirkle()
 	std::cout << "QWIRKLE!!" << std::endl;
 }
 
+void Renderer::renderMenuError()
+{
+	std::cout << "Error: please select a valid option (1-4)" << std::endl;
+}
+
 /* INSTANCE VARIABLES / FIELDS
 
 boolean quit = false;

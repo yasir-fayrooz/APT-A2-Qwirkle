@@ -22,12 +22,18 @@ int main(void) {
 
   Renderer* render = new Renderer(); // instance
   bool quitGame = false;
+  bool renderMenuError = false;
 
   while(quitGame == false)
   {
     render->clearConsole();
     render->mainMenu();
-
+	
+	if(renderMenuError == true)
+	{
+		render->renderMenuError();
+		renderMenuError = false;
+	}
 
     //This method will render the main menu
 
@@ -51,7 +57,7 @@ int main(void) {
     }
     else
     {
-      throw std::runtime_error("Not valid Entry");
+      renderMenuError = true;
     }
   }
   return EXIT_SUCCESS;
