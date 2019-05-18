@@ -17,7 +17,29 @@ PlayerHand::PlayerHand(TileBag* tileBag)
 
 PlayerHand::PlayerHand(string playerHandString)
 {
-	//iterate through playerhandstring and add tiles to playerHand linkedlist
+	playerHand = new LinkedList();
+	
+	int iterator = 0;
+	for(unsigned int i = 0; i < playerHandString.length(); i++)
+	{
+		string tile;
+		if(i == 0)
+		{
+			tile = playerHandString.substr(iterator, 2);
+		}
+		else
+		{
+			iterator = playerHandString.find(",", iterator) + 1;
+			tile = playerHandString.substr(iterator, 2);
+		}
+		
+		char color = tile[0];
+		int shape = stoi(tile.substr(1, 1));
+	
+		Tile* loadTile = new Tile(color, shape);
+	
+		playerHand->addBack(loadTile);
+	}
 }
 
 

@@ -14,8 +14,29 @@ TileBag::TileBag(){
 
 TileBag::TileBag(string tileBagString)
 {
-	//create new tilebag
-	//add each tile from the string to the tileBag
+	tileBag = new LinkedList();
+	
+	int iterator = 0;
+	for(unsigned int i = 0; i < tileBagString.length(); i++)
+	{
+		string tile;
+		if(i == 0)
+		{
+			tile = tileBagString.substr(iterator, 2);
+		}
+		else
+		{
+			iterator = tileBagString.find(",", iterator) + 1;
+			tile = tileBagString.substr(iterator, 2);
+		}
+		
+		char color = tile[0];
+		int shape = stoi(tile.substr(1, 1));
+	
+		Tile* loadTile = new Tile(color, shape);
+	
+		tileBag->addBack(loadTile);
+	}
 }
 
 TileBag::~TileBag(){
