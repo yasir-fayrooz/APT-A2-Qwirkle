@@ -18,6 +18,9 @@ public:
 
    Color  getColor();
    Shape  getShape();
+   void   setColor(Color color);
+   void   setShape(Shape shape);
+   
    string toString();
 
 private:

@@ -57,7 +57,7 @@ void LinkedList::deleteTileFront(){
 //iterates through the list and finds the first Tile with the same color and shape and deletes it.
 void LinkedList::deleteTileHand(char color, int shape){
 	Node* tempNode = head;
-	if(head->tile->getColor() == color || head->tile->getShape() == shape){
+	if(head->tile->getColor() == color && head->tile->getShape() == shape){
 		deleteTileFront();
 		size--;
 	}else{
@@ -89,6 +89,14 @@ bool LinkedList::tileExists(char color, int shape){
 //switch tiles
 void LinkedList::shuffleTiles(int index, int randomNumber)
 {
+	char tile1Color = get(index)->getColor();
+	int tile1Shape = get(index)->getShape();
+	
+	get(index)->setColor(get(randomNumber)->getColor());
+	get(index)->setShape(get(randomNumber)->getShape());
+	
+	get(randomNumber)->setColor(tile1Color);
+	get(randomNumber)->setShape(tile1Shape);
 
 	/*
 	Tile* tile1 = get(index);

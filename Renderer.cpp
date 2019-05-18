@@ -12,7 +12,7 @@ string Renderer::getInput()
 {
 	string input;
 	std::cout << "> ";
-	std::cin >> input;
+	std::getline(std::cin, input);
 	if (input.compare("quit") == 0)
 	{
 		quit = true;
@@ -93,16 +93,6 @@ void Renderer::playerScore(Player* player)
 void Renderer::board(Board* board)
 {
 	std::cout << board->toString() << std::endl;
-	/*
-	   0  1  2  3  4  5
-	  -------------------
-	A |  |  |  |  |  |  |
-	B |  |  |B4|B6|B5|  |
-	C |  |  |R4|  |G5|  |
-	D |  |Y1|Y4|Y2|  |  |
-	E |  |  |P4|  |  |  |
-	F |  |  |  |  |  |  |
-	*/
 }
 
 void Renderer::playerHand(bool player1Turn, Player* player1, Player* player2)

@@ -24,13 +24,11 @@ PlayerHand::PlayerHand(string playerHandString)
 void PlayerHand::drawTile(TileBag* tileBag)
 {
 	playerHand->addBack(tileBag->drawTileFront());
-	//playerHand.addback(tileBag.drawTileFront());
 }
 
 void PlayerHand::replaceTile(char color, int shape, TileBag* tileBag)
 {
 	tileBag->addBack(color, shape);
-	playerHand->deleteTileHand(color, shape);
 	drawTile(tileBag);
 
 	//tileBag.addBack(color, shape);

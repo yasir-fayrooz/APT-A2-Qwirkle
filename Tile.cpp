@@ -16,6 +16,15 @@ Shape Tile::getShape()
 	return shape;
 }
 
+void Tile::setColor(Color color)
+{
+	this->color = color;
+}
+
+void Tile::setShape(Shape shape)
+{
+	this->shape = shape;
+}
 string Tile::toString()
 {
 	string color;

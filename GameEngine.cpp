@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 
+#include <iostream> //delete later
+
 using std::stoi;
 
 GameEngine::GameEngine(string player1name, string player2name)
@@ -26,7 +28,7 @@ GameEngine::GameEngine(string fileName)
 void GameEngine::startGame(Renderer* render)
 {
 	bool saveGame = false;
-
+	std::cout << "TILE BAG SIZE: " << tileBag->getSize() << std::endl;
 	while(endGame == false && render->getQuit() == false)
 	{
     	renderGame(render);
@@ -48,10 +50,10 @@ void GameEngine::startGame(Renderer* render)
 
     	while(validation == false && render->getQuit() == false)
     	{
-      		string input = render->getInput();
+      		input = render->getInput();
       		saveGame = checkSaveGame(input);
       		validation = this->validation(input);
-
+			
       		if(validation == false && saveGame == false)
       		{
 				  renderGame(render);
@@ -67,7 +69,7 @@ void GameEngine::startGame(Renderer* render)
 		if(validation == true && render->getQuit() == false)
 		{
 			string inputType = input.substr(0, input.find(" "));
-
+			
 			if(inputType.compare("replace") == 0)
 			{
 				replace(input);
@@ -110,10 +112,10 @@ bool GameEngine::validation(string input)
 		string position = input.substr(thirdSpace, (input.length() - 12));
 
 		char color = tile[0];
-		int shape = tile[1];
+		int shape = stoi(tile.substr(1, 1));
 
-		int xPos = position[0] % 65; //ASCII VALUE = 0 FOR 'A', 1 FOR 'B'...etc..
-		int yPos = stoi(position.substr(0, position.length())); //convert str to int
+		int xPos = position[0] % 65; //ASCII VALUE = 0 FOR 'A', 1 FOR 'B'...etc.. stoi(position.substr(1, position.length() - 1)); //convert str to int
+		int yPos = stoi(position.substr(1, position.length() - 1)); //convert str to int
 
 		bool validatedPlayerHand = playerHandValidation(inputType, color, shape);
 		bool validatedBoardPos = boardPosValidation(color, shape, xPos, yPos);
@@ -141,10 +143,12 @@ void GameEngine::replace(string input)
 
 	if(player1Turn == true)
 	{
+		players[0]->deleteTileHand(color, shape);
 		players[0]->replaceTile(color, shape, tileBag);
 	}
 	else if(player1Turn == false)
 	{
+		players[1]->deleteTileHand(color, shape);
 		players[1]->replaceTile(color, shape, tileBag);
 	}
 }
@@ -162,7 +166,7 @@ void GameEngine::place(string input)
 	int shape = stoi(tile.substr(1, 1));
 
 	int xPos = position[0] % 65; //ASCII VALUE = 0 FOR 'A', 1 FOR 'B'...etc..
-	int yPos = stoi(position.substr(1, position.length())); //convert str to int
+	int yPos = stoi(position.substr(1, position.length() - 1)); //convert str to int
 
 	board->placeTile(color, shape, xPos, yPos);
 
@@ -311,7 +315,7 @@ int GameEngine::spaceCount(string input)
 bool GameEngine::playerHandValidation(string inputType, char color, int shape)
 {
 	bool validated = false;
-
+	
 	if(color == 82 || //RED ascii code
 	   color == 79 || //ORANGE ascii code
 	   color == 89 || //YELLOW ascii code

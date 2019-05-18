@@ -125,25 +125,6 @@ string Board::toString()
 		board.append("\n");
 	}
 	
-	/*
-	
-	while (int y = 0; y < boardY; y++)
-	{
-		std::cout << ("\n" + letters[y] + " |");
-		while (int x = 0; x < boardX; x++)
-		{
-			if (board->isEmptyTile(x, y) == true)
-			{
-				std::cout << ("  |");
-			}
-			else
-			{
-				std::cout << (board->getTile(x, y) + "|");
-			}
-		}
-	}
-
-	*/
 	return board;
 }
 
