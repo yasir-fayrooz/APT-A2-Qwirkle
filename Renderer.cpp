@@ -86,7 +86,7 @@ void Renderer::playerTurn(bool player1Turn, string player1Name, string player2Na
 
 void Renderer::playerScore(Player* player)
 {
-	std::cout << "Score for " << player->getName() << ": " << player->getScore() << "\n");
+	std::cout << "Score for " << player->getName() << ": " << player->getScore() << "\n";
 }
 
 void Renderer::board(Board* board)

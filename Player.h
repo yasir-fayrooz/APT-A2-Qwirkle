@@ -1,3 +1,6 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include "PlayerHand.h"
 #include "TileBag.h"
 
@@ -26,3 +29,5 @@ private:
 
 //methods
 };
+
+#endif //PLAYER_H

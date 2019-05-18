@@ -1,3 +1,6 @@
+#ifndef RENDERER_H
+#define RENDERER_H
+
 #include <string>
 #include "Board.h"
 #include "Player.h"
@@ -29,3 +32,5 @@ private:
    bool quit = false;
 
 };
+
+#endif //RENDERER_H

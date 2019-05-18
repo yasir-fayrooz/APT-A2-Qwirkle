@@ -90,8 +90,6 @@ bool LinkedList::tileExists(char color, int shape){
 void LinkedList::shuffleTiles(int index, int randomNumber)
 {
 
-	Tile tile1;
-
 	/*
 	Tile* tile1 = get(index);
 	Tile* tile2 = get(randomNumber);    //We are getting pointers NOT COPYING TILES
