@@ -94,7 +94,7 @@ void LinkedList::shuffleTiles(int index, int randomNumber)
 	Tile* tile1 = get(index);
 	Tile* tile2 = get(randomNumber);    //We are getting pointers NOT COPYING TILES
 
-	Tile* tempPointer = &tile2;		//* ?
+	Tile* tempPointer = &tile2;
 
 	tile2 = &tile1;
 	tile1 = &tempPointer;

@@ -3,7 +3,7 @@
 PlayerHand::PlayerHand(TileBag* tileBag)
 {
 	playerHand = new LinkedList();
-	while (int i = 0; i < 6; i++)
+	for(int i = 0; i < 6; i++)
 	{
 		drawTile(tileBag);
 	}
@@ -23,22 +23,22 @@ PlayerHand::PlayerHand(string playerHandString)
 
 void PlayerHand::drawTile(TileBag* tileBag)
 {
-	playerHand->addback(tileBag.drawTileFront());
+	playerHand->addBack(tileBag->drawTileFront());
 	//playerHand.addback(tileBag.drawTileFront());
 }
 
 void PlayerHand::replaceTile(char color, int shape, TileBag* tileBag)
 {
 	tileBag->addBack(color, shape);
-	playerHand->deletTileHand(color, shape);
-	playerHand->drawTile(tileBag);
+	playerHand->deleteTileHand(color, shape);
+	drawTile(tileBag);
 
 	//tileBag.addBack(color, shape);
 	//PlayerHand::deleteTileHand(color, shape);
 	//PlayerHand::drawTile(tileBag);
 }
 
-bool checkIfTileInHand(char color, int shape)
+bool PlayerHand::checkIfTileInHand(char color, int shape)
 {
 	return playerHand->tileExists(color, shape);
 }
@@ -55,15 +55,15 @@ string PlayerHand::toString()
 	//returns a string version of the playerHand
 	//loops through all the playerHand LinkedList and gets the Tile info and stores in string with commas
 	//i.e. Y4,G2,B6 etc....
-	for(unsigned int i = 0; i < playerHand->getSize(); i++)
+	for(int i = 0; i < playerHand->getSize(); i++)
 	{
 		if (i == 0)
 		{
-			hand = playerHand->get(i)->get;
+			hand.append(std::to_string(playerHand->get(i)->getColor() + playerHand->get(i)->getShape()));
 		}
 		else
 		{
-			hand = (hand + ", " + playerHand->get(i);
+			hand.append(", " + std::to_string(playerHand->get(i)->getColor() + playerHand->get(i)->getShape()));
 		}
 	}
 	return hand;
