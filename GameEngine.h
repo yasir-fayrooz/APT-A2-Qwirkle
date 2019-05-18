@@ -1,7 +1,9 @@
 #include <string>
-#include "Board.h"
 #include "TileBag.h"
+#include "TileCodes.h"
+#include "Board.h"
 #include "Player.h"
+#include "Renderer.h"
 
 using std::string;
 

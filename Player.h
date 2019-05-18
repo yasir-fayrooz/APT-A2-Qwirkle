@@ -12,7 +12,7 @@ public:
    int          getScore();
    void         setScore(int score);
    string       getPlayerHandString();
-   void         replaceTile(char color, int shape, TileBag* tileBag)
+   void         replaceTile(char color, int shape, TileBag* tileBag);
    PlayerHand*   getPlayerHand();
    bool         checkIfTileInHand(char color, int shape);
    void         drawTile(TileBag* tileBag);

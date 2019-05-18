@@ -1,5 +1,8 @@
-
 #include <string>
+#include "Board.h"
+#include "Player.h"
+
+using std::string;
 
 class Renderer {
 public:
@@ -15,6 +18,7 @@ public:
 	void playerHand(bool player1Turn, Player* player1, Player* player2);
 	void saveGame();
 	void inputValidationError();
+	void qwirkle();
 
 	string getInput();
 

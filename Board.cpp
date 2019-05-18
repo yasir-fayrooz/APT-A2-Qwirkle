@@ -3,7 +3,6 @@
 
 Board::Board()
 {
-	tile = new Tile[6][6];
 	tilesPlaced = 0;
 	xSize = 6;
 	ySize = 6;
@@ -18,13 +17,13 @@ Board::Board(int xSize, int ySize)
 
 void Board::placeTile(char color, int shape, int xPos, int yPos)
 {
-	*tile[xPos][yPos] = new Tile(color, shape);
+	tile[xPos][yPos] = new Tile(color, shape);
 	Board::checkAndExpandBoard(xPos, yPos);
 	
 	tilesPlaced++;
 }
 
-void Board::checkAndExpandBoard(xPos, yPos)
+void Board::checkAndExpandBoard(int xPos, int yPos)
 {
 	/*
 		IF(xPos == xSize - 1 && xSize < MAX_BOARD_X)

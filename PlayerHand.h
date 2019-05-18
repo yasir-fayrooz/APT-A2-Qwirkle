@@ -3,6 +3,8 @@
 
 #include "LinkedList.h"
 
+#include "TileBag.h"
+
 #include <string>
 using std::string;
 

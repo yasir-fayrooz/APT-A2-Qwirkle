@@ -1,5 +1,5 @@
-#include "Renderer.h"
 #include "GameEngine.h"
+#include "Renderer.h"
 
 #include <iostream>
 #include <string>
@@ -35,15 +35,15 @@ int main(void) {
     //This method will get input and return the string.
     if (input.compare("1") == 0)
     {
-      newGame(Renderer* render);
+      newGame(render);
     }
     else if (input.compare("2") == 0)
     {
-      loadGame(Renderer* render);
+      loadGame(render);
     }
     else if (input.compare("3") == 0)
     {
-      showStudentInfo(Renderer* render);
+      showStudentInfo(render);
     }
     else if (input.compare("4") == 0)
     {
@@ -85,7 +85,7 @@ void newGame(Renderer* render)
 //validates player name to specification after getting input...
 bool playerValidation(string name){
   bool isValid = true;
-  for(int i=0;i<name.size();i++){
+  for(unsigned int i=0; i < name.size(); i++){
     if((int) name[i] < 65  || ((int) name[i] > 90 && (int) name[i] < 97) || (int) name[i] > 122){
       isValid = false;
     }
@@ -96,7 +96,7 @@ bool playerValidation(string name){
 void loadGame(Renderer* render)
 {
   render->clearConsole();
-  String fileName = 0;
+  string fileName = 0;
 
   while(fileValidation(fileName) == false && render->getQuit() == false)
   {
@@ -108,7 +108,7 @@ void loadGame(Renderer* render)
   if(render->getQuit() == false)
   {
     GameEngine* gameEngine = new GameEngine(fileName);
-    gameEngine.startGame(render);
+    gameEngine->startGame(render);
   }
 }
 

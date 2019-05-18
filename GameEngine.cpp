@@ -1,5 +1,4 @@
 #include "GameEngine.h"
-#include "TileCodes.h"
 #include <fstream>
 #include <sstream>
 
@@ -56,7 +55,7 @@ void GameEngine::startGame(Renderer* render)
       		if(validation == false && saveGame == false)
       		{
 				  renderGame(render);
-				  render->InputValidationError();
+				  render->inputValidationError();
       		}
 			
 			if(saveGame == true)
@@ -138,7 +137,7 @@ void GameEngine::replace(string input)
 	string tile = input.substr(firstSpace, 2);
 
 	char color = tile[0];
-	int shape = stoi(tile[1]);
+	int shape = stoi(tile.substr(1,1));
 
 	if(player1Turn == true)
 	{
@@ -160,7 +159,7 @@ void GameEngine::place(string input)
 	string position = input.substr(thirdSpace, (input.length() - 12));
 
 	char color = tile[0];
-	int shape = stoi(tile[1]);
+	int shape = stoi(tile.substr(1, 1));
 
 	int xPos = position[0] % 65; //ASCII VALUE = 0 FOR 'A', 1 FOR 'B'...etc..
 	int yPos = stoi(position.substr(1, position.length())); //convert str to int
@@ -298,7 +297,7 @@ int GameEngine::spaceCount(string input)
 {
 	int spaceCount = 0;
 
-	for(int i = 0; i < input.length(); i++)
+	for(unsigned int i = 0; i < input.length(); i++)
 	{
 		if(input[i] == 32) //32 = space ASCII
 		{
@@ -525,7 +524,7 @@ bool GameEngine::checkSaveGame(string input)
 
 void GameEngine::saveGame(string input)
 {
-	string fileName = input.substr((find_first_of(" ") + 1), input.length());
+	string fileName = input.substr((input.find_first_of(" ") + 1), input.length());
 
 	fileName = fileName + ".txt";
 
@@ -578,7 +577,7 @@ void GameEngine::loadGame(string fileName)
 	string player1Name;
 	std::getline(inFile, player1Name);
 
-	str player1ScoreStr;
+	string player1ScoreStr;
 	std::getline(inFile, player1ScoreStr);
 	int player1Score = stoi(player1ScoreStr);
 
@@ -588,7 +587,7 @@ void GameEngine::loadGame(string fileName)
 	string player2Name;
 	std::getline(inFile, player2Name);
 
-	str player2ScoreStr;
+	string player2ScoreStr;
 	std::getline(inFile, player2ScoreStr);
 	int player2Score = stoi(player2ScoreStr);
 
@@ -604,7 +603,8 @@ void GameEngine::loadGame(string fileName)
 	int xSize = 0;
 
 	bool endBoard = false;
-	while(endboard == false)
+	
+	while(endBoard == false)
 	{
 		string tempString;
 		std::getline(inFile, tempString);
@@ -625,7 +625,7 @@ void GameEngine::loadGame(string fileName)
 	loadBoardTiles(boardString, xSize);
 	
 	string tileBagString;
-	std::getLine(inFile, tileBagString);
+	std::getline(inFile, tileBagString);
 
 	tileBag = new TileBag(tileBagString);
 
@@ -642,7 +642,7 @@ void GameEngine::loadBoardTiles(string boardString, int xSize)
 	std::getline(iss, line);
 	std::getline(iss, line);
 
-	int iterator = 0;
+	unsigned int iterator = 0;
 	int xPos = -1;
 	int yPos = -1;
 	
@@ -662,7 +662,7 @@ void GameEngine::loadBoardTiles(string boardString, int xSize)
 			{
 				string tile = line.substr((tileBoundry + 1), 2);
 				char color = tile[0];
-				int shape = stoi(tile[1]);
+				int shape = stoi(tile.substr(1, 1));
 
 				board->placeTile(color, shape, xPos, yPos);
 			}

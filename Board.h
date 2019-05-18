@@ -28,7 +28,5 @@ private:
    int  xSize;
    int  ySize;
 
-   void checkAndExpandBoard(xPos, yPos);
+   void checkAndExpandBoard(int xPos, int yPos);
 };
-
-#endif // ASSIGN2_TILE_H

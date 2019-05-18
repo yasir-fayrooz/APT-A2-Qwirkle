@@ -55,7 +55,7 @@ string PlayerHand::toString()
 	//returns a string version of the playerHand
 	//loops through all the playerHand LinkedList and gets the Tile info and stores in string with commas
 	//i.e. Y4,G2,B6 etc....
-	while (int i = 0; i < playerHand->getSize(); i++)
+	while(unsigned int i = 0; i < playerHand->getSize(); i++)
 	{
 		if (i == 0)
 		{

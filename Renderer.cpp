@@ -8,7 +8,7 @@ void Renderer::clearConsole()
 	system("cls");
 }
 
-String Renderer::getInput()
+string Renderer::getInput()
 {
 	string input;
 	std::cout << "> ";
@@ -41,7 +41,7 @@ void Renderer::mainMenu()
 
 void Renderer::playerName(string player)
 {
-	std::cout << ("Enter a name for " + player + "\n");
+	std::cout << "Enter a name for " << player << "\n";
 }
 
 void Renderer::loadGame()
@@ -76,17 +76,17 @@ void Renderer::playerTurn(bool player1Turn, string player1Name, string player2Na
 {
 	if (player1Turn == true)
 	{
-		std::cout << (player1Name + " it's your turn\n");
+		std::cout << player1Name << " it's your turn\n";
 	}
 	else
 	{
-		std::cout << (player2Name + " it's your turn\n");
+		std::cout << player2Name << " it's your turn\n";
 	}
 }
 
 void Renderer::playerScore(Player* player)
 {
-	std::cout << ("Score for " + player->getName() + ": " + player->getScore() + "\n");
+	std::cout << "Score for " << player->getName() << ": " << player->getScore() << "\n");
 }
 
 void Renderer::board(Board* board)
@@ -109,11 +109,11 @@ void Renderer::playerHand(bool player1Turn, Player* player1, Player* player2)
 {
 	if (player1Turn == true)
 	{
-		std::cout << (player1->getPlayerHandString() + "\n");
+		std::cout << player1->getPlayerHandString() << "\n";
 	}
 	else
 	{
-		std::cout << (player2->getPlayerHandString() + "\n");
+		std::cout << player2->getPlayerHandString() << "\n";
 	}
 }
 
@@ -128,6 +128,11 @@ void Renderer::inputValidationError()
 	std::cout << "1. case sensitive command of place [tile] at [position]\n";
 	std::cout << "2. case sensitive command of replace [tile]\n";
 	std::cout << "3. the tile is in your hand and there are enough tiles in bag to replace\n";
+}
+
+void Renderer::qwirkle()
+{
+	std::cout << "QWIRKLE!!" << std::endl;
 }
 
 /* INSTANCE VARIABLES / FIELDS
