@@ -107,6 +107,7 @@ void Renderer::board(Board* board)
 
 void Renderer::playerHand(bool player1Turn, Player* player1, Player* player2)
 {
+	std::cout << "Your hand is: " << std::endl;
 	if (player1Turn == true)
 	{
 		std::cout << player1->getPlayerHandString() << "\n";
@@ -115,6 +116,8 @@ void Renderer::playerHand(bool player1Turn, Player* player1, Player* player2)
 	{
 		std::cout << player2->getPlayerHandString() << "\n";
 	}
+	
+	std::cout << "" << std::endl;
 }
 
 void Renderer::saveGame()

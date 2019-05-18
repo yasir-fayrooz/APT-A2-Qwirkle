@@ -78,27 +78,55 @@ int Board::getYSize()
 
 string Board::toString()
 {
-	string board = "THIS IS WHERE THE BOARD SHOULD RENDER UNIMPLEMENTED YET";
+	string board = "";
+	
+	for(int i = 0; i < xSize; i++)
+	{
+		if(i == 0)
+		{
+			board.append("   ");
+		}
+		board.append(std::to_string(i) + "  ");
+	}
+	
+	board.append("\n");
+	
+	for(int i = 0; i < xSize; i++)
+	{
+		if(i == 0)
+		{
+			board.append("  ");
+		}
+		board.append("---");
+	}
+	
+	board.append("\n");
+	
+	for(int x = 0; x < xSize; x++)
+	{
+		string row;
+		char rowChar = 65 + x;
+		row = rowChar;
+		
+		board.append(row + " |");
+		
+		for(int y = 0; y < ySize; y++)
+		{
+			if(isEmptyTile(x, y) == true)
+			{
+				board.append("  |");
+			}
+			else
+			{
+				board.append(getTile(x, y)->toString() + "|");
+			}
+		}
+		
+		board.append("\n");
+	}
+	
 	/*
-
-	int boardX = board->getXSize();
-	int boardY = board->getYSize();
-	while (int i = 0; i < boardX; i++)
-	{
-		if (i == 0) 
-		{
-			std::cout << ("\n   ");
-		}
-		std::cout << (i + "  ");
-	}
-	while (int z = 0; z < boardX; z++)
-	{
-		if (z == 0)
-		{
-			std::cout << ("\n  ----");
-		}
-		std::cout << ("---");
-	}
+	
 	while (int y = 0; y < boardY; y++)
 	{
 		std::cout << ("\n" + letters[y] + " |");
