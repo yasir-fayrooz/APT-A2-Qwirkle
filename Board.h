@@ -27,7 +27,7 @@ public:
    string toString();
 
 private:
-   Tile* tile[6][6];
+   Tile*** tile;
    int  tilesPlaced;
    int  xSize;
    int  ySize;

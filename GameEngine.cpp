@@ -15,7 +15,6 @@ GameEngine::GameEngine(string player1name, string player2name)
 	//players[1] = new Player(player2Name, POINTER TO TILEBAG);
 	board = new Board();
 	tileBag = new TileBag();
-	std::cout << tileBag->toString() << std::endl;
 	players[0] = new Player(player1name, tileBag);
 	players[1] = new Player(player2name, tileBag);
 }
@@ -37,7 +36,6 @@ GameEngine::~GameEngine()
 void GameEngine::startGame(Renderer* render)
 {
 	bool saveGame = false;
-	std::cout << "TILE BAG SIZE: " << tileBag->getSize() << std::endl;
 	while(endGame == false && render->getQuit() == false)
 	{
     	renderGame(render);
@@ -74,9 +72,11 @@ void GameEngine::startGame(Renderer* render)
 				this->saveGame(input);
 			}
     	}
-
+		
 		if(validation == true && render->getQuit() == false)
 		{
+			std::cout << "VALIDATED INPUT" << std::endl;
+
 			string inputType = input.substr(0, input.find(" "));
 			
 			if(inputType.compare("replace") == 0)
@@ -86,6 +86,7 @@ void GameEngine::startGame(Renderer* render)
 			}
 			else if(inputType.compare("place") == 0)
 			{
+				std::cout << "ABOUT TO PLACE" << std::endl;
 				place(input);
 				player1Turn = !player1Turn;
 				endGame = endGameChecker();
@@ -102,7 +103,6 @@ void GameEngine::renderGame(Renderer* render)
 	render->playerScore(players[1]);
 	render->board(board);
 	render->playerHand(player1Turn, players[0], players[1]);
-	std::cout << tileBag->toString() << std::endl;
 }
 
 bool GameEngine::validation(string input)

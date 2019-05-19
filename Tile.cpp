@@ -27,7 +27,7 @@ void Tile::setShape(Shape shape)
 }
 string Tile::toString()
 {
-	string color;
-	color = this->color;
-	return color + std::to_string(shape);
+	string colorStr;
+	colorStr = color;
+	return colorStr + std::to_string(shape);	
 }

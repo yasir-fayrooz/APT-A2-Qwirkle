@@ -61,7 +61,6 @@ int main(void) {
     }
   }
   
-  delete render;
   return EXIT_SUCCESS;
 }
 

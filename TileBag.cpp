@@ -1,10 +1,6 @@
 #include "TileBag.h"
 
 #include <random>
-//#include <iostream>
-
-//using std::cout;
-//using std::endl;
 
 TileBag::TileBag(){
 	tileBag = new LinkedList();

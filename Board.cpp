@@ -1,11 +1,19 @@
 
 #include "Board.h"
 
+#include <iostream> //delete later
+
 Board::Board()
 {
-	tilesPlaced = 0;
 	xSize = 6;
 	ySize = 6;
+	
+	tile = new Tile**[ySize];
+	for(int y = 0; y < ySize; y++)
+	{
+		tile[y] = new Tile*[xSize];
+	}
+	tilesPlaced = 0;
 }
 
 Board::Board(int xSize, int ySize)
@@ -18,55 +26,115 @@ Board::~Board()
 {
 	for(int x = 0; x < xSize; x++)
 	{
-		for(int y = 0; y < ySize; y++)
-		{
-			if(isEmptyTile(x, y) == false)
-			{
-				delete tile[x][y];	
-			}
-		}
+		delete[] tile[x];
 	}
+	delete[] tile;
 }
 
 void Board::placeTile(char color, int shape, int xPos, int yPos)
 {
-	tile[xPos][yPos] = new Tile(color, shape);
-	Board::checkAndExpandBoard(xPos, yPos);
-	
+	tile[yPos][xPos] = new Tile(color, shape);
+	checkAndExpandBoard(xPos, yPos); 
+
 	tilesPlaced++;
 }
 
 void Board::checkAndExpandBoard(int xPos, int yPos)
 {
-	/*
-		IF(xPos == xSize - 1 && xSize < MAX_BOARD_X)
-			xSize++;
-			CREATE NEW TEMPORARY TILE OF SIZE tileTemp[xSize][ySize];
-			FILL IN ALL EXISTING TILES FROM tile[xSize - 1][ySize] into tileTemp[xSize][ySize]
-			DELETE tile array
-			SET tile array to tileTemp array
-		ELSEIF(yPos == ySize - 1 && ySize < MAX_BOARD_Y)
-			ySize++;
-			CREATE NEW TEMPORARY TILE OF SIZE tileTemp[xSize][ySize];
-			FILL IN ALL EXISTING TILES FROM tile[xSize][ySize - 1] into tileTemp[xSize][ySize]
-			DELETE tile array
-			SET tile array to tileTemp array
-		ENDIF
-	
-	*/
-	
+	if(xPos == xSize - 1 && xSize < MAX_BOARD_X)
+	{
+		std::cout << "EXPANDING X BOARD" << std::endl;
+		//CREATE NEW TEMP ARRAY START
+		Tile*** newTile = new Tile**[ySize];
+		for(int y = 0; y < ySize; y++)
+		{
+			newTile[y] = new Tile*[xSize + 1];   //creates new 2d array of array xSize + 1
+		}
+		//CREATE NEW TEMP ARRAY END	
+		
+		//COPY ARRAY VALUES TO NEW ARRAY START
+		for(int x = 0; x < xSize; x++)
+		{
+			for(int y = 0; y < ySize; y++)
+			{
+				if(tile[y][x] != NULL)
+				{
+					newTile[y][x] = new Tile(tile[y][x]->getColor(), tile[y][x]->getShape());  //copies all old values	
+				}
+			}
+		}
+		//COPY ARRAY VALUES TO NEW ARRAY END
+		
+		//DELETE OLD ARRAY START
+		for(int x = 0; x < xSize; x++)
+		{
+			delete[] tile[x];
+		}
+		delete[] tile;
+		//DELETE OLD ARRAY END
+		
+		//ASSIGN DELETED TO NEW TEMP ARRAY START
+		tile = newTile;
+		xSize++;
+		//ASSIGN DELETED TO NEW TEMP ARRAY END
+	}
+	else if(yPos == ySize - 1 && ySize < MAX_BOARD_Y)
+	{
+		std::cout << "EXPANDING Y BOARD" << std::endl;
+		//CREATE NEW TEMP ARRAY START
+		Tile*** newTile = new Tile**[ySize + 1];
+		for(int y = 0; y < ySize; y++)
+		{
+			newTile[y] = new Tile*[xSize];   //creates new 2d array of array xSize
+		}
+		//CREATE NEW TEMP ARRAY END	
+		
+		//COPY ARRAY VALUES TO NEW ARRAY START
+		for(int x = 0; x < xSize; x++)
+		{
+			for(int y = 0; y < ySize; y++)
+			{
+				if(tile[y][x] != nullptr)
+				{
+					newTile[y][x] = new Tile(tile[y][x]->getColor(), tile[y][x]->getShape());   //copies all old values	
+				}
+			}
+		}
+		//COPY ARRAY VALUES TO NEW ARRAY END
+		
+		//DELETE OLD ARRAY START
+		for(int x = 0; x < xSize; x++)
+		{
+			delete[] tile[x];
+		}
+		delete[] tile;
+		//DELETE OLD ARRAY END
+		
+		//ASSIGN DELETED TO NEW TEMP ARRAY START
+		tile = newTile;
+		ySize++;
+		//ASSIGN DELETED TO NEW TEMP ARRAY END
+	}
 }
 
 Tile* Board::getTile(int xPos, int yPos)
 {
-	return tile[xPos][yPos];
+	if(xPos >= xSize || xPos < 0 ||
+	   yPos >= ySize || yPos < 0  )
+	{
+		return nullptr;
+	}
+	else
+	{
+		return tile[yPos][xPos];
+	}
 }
 
 bool Board::isEmptyTile(int xPos, int yPos)
 {
 	bool empty = false;
 	
-	if(tile[xPos][yPos] == nullptr)
+	if(tile[yPos][xPos] == nullptr)
 	{
 		empty = true;
 	}
@@ -93,7 +161,7 @@ string Board::toString()
 {
 	string board = "";
 	
-	for(int i = 0; i < xSize; i++)
+	for(int i = 0; i < ySize; i++)
 	{
 		if(i == 0)
 		{
@@ -104,7 +172,7 @@ string Board::toString()
 	
 	board.append("\n");
 	
-	for(int i = 0; i < xSize; i++)
+	for(int i = 0; i < ySize; i++)
 	{
 		if(i == 0)
 		{
@@ -131,7 +199,15 @@ string Board::toString()
 			}
 			else
 			{
-				board.append(getTile(x, y)->toString() + "|");
+				Tile* tile = getTile(x, y);
+				if(tile == nullptr)
+				{
+					board.append("  |");
+				}
+				else
+				{
+					board.append(tile->toString() + "|");
+				}
 			}
 		}
 		
