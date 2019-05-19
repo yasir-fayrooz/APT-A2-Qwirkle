@@ -10,6 +10,7 @@ class Player {
 public:
    Player(string player1name, TileBag* tileBag);
    Player(string name, int score, string playerHandString);
+   ~Player();
 
    string       getName();
    int          getScore();

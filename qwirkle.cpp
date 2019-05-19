@@ -60,6 +60,8 @@ int main(void) {
       renderMenuError = true;
     }
   }
+  
+  delete render;
   return EXIT_SUCCESS;
 }
 
@@ -85,6 +87,7 @@ void newGame(Renderer* render)
 	{
 		GameEngine* gameEngine = new GameEngine(player1, player2);
 		gameEngine->startGame(render);
+		delete gameEngine;
 	}
 }
 
@@ -121,6 +124,7 @@ void loadGame(Renderer* render)
   {
     GameEngine* gameEngine = new GameEngine(fileName);
     gameEngine->startGame(render);
+	delete gameEngine;
   }
 }
 
@@ -150,7 +154,7 @@ bool fileValidation(string fileName)
 
 bool quit()
 {
-  return true;
+	return true;
 }
 
 

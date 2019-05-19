@@ -12,6 +12,7 @@ class GameEngine {
 public:
    GameEngine(string player1name, string player2name);
    GameEngine(string fileName);
+   ~GameEngine();
    
    void startGame(Renderer* render);
 

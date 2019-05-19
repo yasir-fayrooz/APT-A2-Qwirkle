@@ -42,6 +42,11 @@ PlayerHand::PlayerHand(string playerHandString)
 	}
 }
 
+PlayerHand::~PlayerHand()
+{
+	delete playerHand;
+}
+
 
 void PlayerHand::drawTile(TileBag* tileBag)
 {

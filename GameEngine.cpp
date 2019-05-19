@@ -25,6 +25,14 @@ GameEngine::GameEngine(string fileName)
 	GameEngine::loadGame(fileName);
 }
 
+GameEngine::~GameEngine()
+{
+	delete board;
+	delete tileBag;
+	delete players[0];
+	delete players[1];
+}
+
 void GameEngine::startGame(Renderer* render)
 {
 	bool saveGame = false;

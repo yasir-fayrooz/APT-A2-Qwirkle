@@ -12,6 +12,7 @@ class PlayerHand {
 public:
    PlayerHand(TileBag* tileBag);
    PlayerHand(string playerHandString);
+   ~PlayerHand();
 
    void     drawTile(TileBag* tileBag);
    void     deleteTileHand(char color, int shape);

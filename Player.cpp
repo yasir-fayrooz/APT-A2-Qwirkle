@@ -19,6 +19,11 @@ Player::Player(string name, int score, string playerHandString)
 	playerHand = new PlayerHand(playerHandString);
 }
 
+Player::~Player()
+{
+	delete playerHand;
+}
+
 string Player::getName()
 {
 	//finished

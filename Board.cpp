@@ -14,6 +14,16 @@ Board::Board(int xSize, int ySize)
 	this->ySize = ySize;
 }
 
+Board::~Board()
+{
+	for(int x = 0; x < ySize; x++)
+	{
+		for(int y = 0; y < ySize; y++)
+		{
+			delete tile[x][y];
+		}
+	}
+}
 
 void Board::placeTile(char color, int shape, int xPos, int yPos)
 {

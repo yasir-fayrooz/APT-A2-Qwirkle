@@ -14,6 +14,7 @@ class Board {
 public:
    Board();
    Board(int xSize, int ySize);
+   ~Board();
 
    void placeTile(char color, int shape, int xPos, int yPos);
    Tile* getTile(int xPos, int yPos);
