@@ -20,7 +20,7 @@ int LinkedList::getSize(){
 //gets the tile at i position and returns it
 Tile* LinkedList::get(int i){
 	Node* node = head;
-	for(int k=1;k<i;k++){
+	for(int k=0;k<i;k++){
 		node = node->next;
 	}
 	return node->tile;
@@ -59,7 +59,6 @@ void LinkedList::deleteTileHand(char color, int shape){
 	Node* tempNode = head;
 	if(head->tile->getColor() == color && head->tile->getShape() == shape){
 		deleteTileFront();
-		size--;
 	}else{
 		while((tempNode->next->tile->getColor() != color || tempNode->next->tile->getShape() != shape) && tempNode != nullptr){
 			tempNode = tempNode->next;

@@ -16,11 +16,14 @@ Board::Board(int xSize, int ySize)
 
 Board::~Board()
 {
-	for(int x = 0; x < ySize; x++)
+	for(int x = 0; x < xSize; x++)
 	{
 		for(int y = 0; y < ySize; y++)
 		{
-			delete tile[x][y];
+			if(isEmptyTile(x, y) == false)
+			{
+				delete tile[x][y];	
+			}
 		}
 	}
 }

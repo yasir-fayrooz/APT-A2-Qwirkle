@@ -15,6 +15,7 @@ GameEngine::GameEngine(string player1name, string player2name)
 	//players[1] = new Player(player2Name, POINTER TO TILEBAG);
 	board = new Board();
 	tileBag = new TileBag();
+	std::cout << tileBag->toString() << std::endl;
 	players[0] = new Player(player1name, tileBag);
 	players[1] = new Player(player2name, tileBag);
 }
@@ -95,12 +96,13 @@ void GameEngine::startGame(Renderer* render)
 
 void GameEngine::renderGame(Renderer* render)
 {
-	render->clearConsole();
+	//render->clearConsole();
 	render->playerTurn(player1Turn, players[0]->getName(), players[1]->getName());
 	render->playerScore(players[0]);
 	render->playerScore(players[1]);
 	render->board(board);
 	render->playerHand(player1Turn, players[0], players[1]);
+	std::cout << tileBag->toString() << std::endl;
 }
 
 bool GameEngine::validation(string input)

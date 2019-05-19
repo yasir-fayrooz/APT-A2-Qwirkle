@@ -49,7 +49,9 @@ int TileBag::getSize(){
 
 //draws the first tile
 Tile* TileBag::drawTileFront(){
-	Tile* tile = tileBag->get(0);
+	char color = tileBag->get(0)->getColor();
+	int shape = tileBag->get(0)->getShape();
+	Tile* tile = new Tile(color, shape);
 	tileBag->deleteTileFront();
 	return tile;
 }
