@@ -55,7 +55,7 @@ void GameEngine::startGame(Renderer* render)
     	bool validation = false;
 		string input = "";
 
-    	while(validation == false && render->getQuit() == false)
+    	while(validation == false && render->getQuit() == false && saveGame == false)
     	{
       		input = render->getInput();
       		saveGame = checkSaveGame(input);
@@ -73,7 +73,7 @@ void GameEngine::startGame(Renderer* render)
 			}
     	}
 		
-		if(validation == true && render->getQuit() == false)
+		if(validation == true && render->getQuit() == false && saveGame == false)
 		{
 			std::cout << "VALIDATED INPUT" << std::endl;
 
@@ -196,7 +196,11 @@ void GameEngine::place(string input)
 void GameEngine::calculatePointsScored(char color, int shape, int xPos, int yPos)
 {
 	int pointsScored = 0;
-
+	
+	if(board->getTilesPlaced() == 1)
+	{
+		pointsScored++;
+	}
 	if(board->getTile((xPos + 1), yPos) != nullptr)
 	{
 		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "down");		

@@ -210,8 +210,10 @@ string Board::toString()
 				}
 			}
 		}
-		
-		board.append("\n");
+		if(x != xSize - 1)
+		{
+			board.append("\n");	
+		}
 	}
 	
 	return board;
