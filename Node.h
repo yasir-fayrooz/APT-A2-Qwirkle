@@ -5,10 +5,10 @@
 #include "Tile.h"
 
 class Node {
-public:
 
+public:
    Node(Tile* tile, Node* next);            //constructor
-   Node(Node& other);                       //copy constructor
+   ~Node();                                 //deconstructor
 
    Tile*    tile;
    Node*    next;

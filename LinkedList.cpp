@@ -6,11 +6,9 @@ LinkedList::LinkedList() : head(nullptr), size(0) {}
 
 //deconstructor
 LinkedList::~LinkedList() {
-	/*
-	FOR each Node
-		GET  next
-		DELETE node
-	*/
+	for(int i=0;i<size;i++){
+		delete get(i);
+	}
 }
 
 int LinkedList::getSize(){
@@ -90,10 +88,10 @@ void LinkedList::shuffleTiles(int index, int randomNumber)
 {
 	char tile1Color = get(index)->getColor();
 	int tile1Shape = get(index)->getShape();
-	
+
 	get(index)->setColor(get(randomNumber)->getColor());
 	get(index)->setShape(get(randomNumber)->getShape());
-	
+
 	get(randomNumber)->setColor(tile1Color);
 	get(randomNumber)->setShape(tile1Shape);
 
