@@ -15,6 +15,7 @@ typedef int Shape;
 class Tile {
 public:
    Tile(Color color, Shape shape);
+   Tile(const Tile &oldTile);
 
    Color  getColor();
    Shape  getShape();

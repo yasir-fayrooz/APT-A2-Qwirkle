@@ -1,34 +1,60 @@
-
 #include "Board.h"
-
-#include <iostream> //delete later
 
 Board::Board()
 {
 	xSize = 6;
 	ySize = 6;
-	
+	//create the board
 	tile = new Tile**[ySize];
 	for(int y = 0; y < ySize; y++)
 	{
 		tile[y] = new Tile*[xSize];
 	}
+	//initialise to nullptr
+	for(int y = 0; y < ySize; y++)
+	{
+		for(int x = 0; x < xSize; x++)
+		{
+			tile[y][x] = nullptr;
+		}
+	}
+	//initialise tilesPlaced
 	tilesPlaced = 0;
 }
 
 Board::Board(int xSize, int ySize)
 {
+	//initialise xSize, ySize
 	this->xSize = xSize;
 	this->ySize = ySize;
+	//initialise Board size
+	tile = new Tile**[ySize];
+	for(int y = 0; y < ySize; y++)
+	{
+		tile[y] = new Tile*[xSize];
+	}
+	//initialise tiles to nullptr
+	for(int y = 0; y < ySize; y++)
+	{
+		for(int x = 0; x < xSize; x++)
+		{
+			tile[y][x] = nullptr;
+		}
+	}
 }
 
 Board::~Board()
 {
-	for(int x = 0; x < xSize; x++)
+	for(int y = 0; y < ySize; y++)
 	{
-		delete[] tile[x];
+		for(int x = 0; x < xSize; x++)
+		{
+			delete tile[y][x];
+		}
+		delete[] tile[y];
 	}
 	delete[] tile;
+	tile = nullptr;
 }
 
 void Board::placeTile(char color, int shape, int xPos, int yPos)
@@ -41,9 +67,8 @@ void Board::placeTile(char color, int shape, int xPos, int yPos)
 
 void Board::checkAndExpandBoard(int xPos, int yPos)
 {
-	if(xPos == xSize - 1 && xSize < MAX_BOARD_X)
+	if(xPos == (xSize - 1) && xSize < MAX_BOARD_X)
 	{
-		std::cout << "EXPANDING X BOARD" << std::endl;
 		//CREATE NEW TEMP ARRAY START
 		Tile*** newTile = new Tile**[ySize];
 		for(int y = 0; y < ySize; y++)
@@ -53,37 +78,48 @@ void Board::checkAndExpandBoard(int xPos, int yPos)
 		//CREATE NEW TEMP ARRAY END	
 		
 		//COPY ARRAY VALUES TO NEW ARRAY START
-		for(int x = 0; x < xSize; x++)
+		for(int x = 0; x < xSize + 1; x++)
 		{
 			for(int y = 0; y < ySize; y++)
 			{
-				if(tile[y][x] != NULL)
+				if(x != xSize && tile[y][x] != nullptr)
 				{
-					newTile[y][x] = new Tile(tile[y][x]->getColor(), tile[y][x]->getShape());  //copies all old values	
+					newTile[y][x] = new Tile(tile[y][x]->getColor(), tile[y][x]->getShape());  //copies all old values		
+				}
+				else
+				{
+					newTile[y][x] = nullptr;
 				}
 			}
 		}
 		//COPY ARRAY VALUES TO NEW ARRAY END
 		
 		//DELETE OLD ARRAY START
-		for(int x = 0; x < xSize; x++)
+		for(int y = 0; y < ySize; y++)
 		{
-			delete[] tile[x];
+			for(int x = 0; x < xSize; x++)
+			{
+				delete tile[y][x];
+			}
+			delete[] tile[y];
 		}
 		delete[] tile;
+		tile = nullptr;
 		//DELETE OLD ARRAY END
 		
 		//ASSIGN DELETED TO NEW TEMP ARRAY START
 		tile = newTile;
+		*tile = *newTile;
+		**tile = **newTile;
+		***tile = ***newTile;
 		xSize++;
 		//ASSIGN DELETED TO NEW TEMP ARRAY END
 	}
-	else if(yPos == ySize - 1 && ySize < MAX_BOARD_Y)
+	if(yPos == ySize - 1 && ySize < MAX_BOARD_Y)
 	{
-		std::cout << "EXPANDING Y BOARD" << std::endl;
 		//CREATE NEW TEMP ARRAY START
 		Tile*** newTile = new Tile**[ySize + 1];
-		for(int y = 0; y < ySize; y++)
+		for(int y = 0; y < ySize + 1; y++)
 		{
 			newTile[y] = new Tile*[xSize];   //creates new 2d array of array xSize
 		}
@@ -92,26 +128,38 @@ void Board::checkAndExpandBoard(int xPos, int yPos)
 		//COPY ARRAY VALUES TO NEW ARRAY START
 		for(int x = 0; x < xSize; x++)
 		{
-			for(int y = 0; y < ySize; y++)
+			for(int y = 0; y < ySize + 1; y++)
 			{
-				if(tile[y][x] != nullptr)
+				if(y != ySize && tile[y][x] != nullptr)
 				{
-					newTile[y][x] = new Tile(tile[y][x]->getColor(), tile[y][x]->getShape());   //copies all old values	
+					newTile[y][x] = new Tile(tile[y][x]->getColor(), tile[y][x]->getShape());  //copies all old values		
+				}
+				else
+				{
+					newTile[y][x] = nullptr;
 				}
 			}
 		}
 		//COPY ARRAY VALUES TO NEW ARRAY END
 		
 		//DELETE OLD ARRAY START
-		for(int x = 0; x < xSize; x++)
+		for(int y = 0; y < ySize; y++)
 		{
-			delete[] tile[x];
+			for(int x = 0; x < xSize; x++)
+			{
+				delete tile[y][x];
+			}
+			delete[] tile[y];
 		}
 		delete[] tile;
+		tile = nullptr;
 		//DELETE OLD ARRAY END
 		
 		//ASSIGN DELETED TO NEW TEMP ARRAY START
 		tile = newTile;
+		*tile = *newTile;
+		**tile = **newTile;
+		***tile = ***newTile;
 		ySize++;
 		//ASSIGN DELETED TO NEW TEMP ARRAY END
 	}
@@ -119,19 +167,23 @@ void Board::checkAndExpandBoard(int xPos, int yPos)
 
 Tile* Board::getTile(int xPos, int yPos)
 {
-	if(xPos >= xSize || xPos < 0 ||
-	   yPos >= ySize || yPos < 0  )
+	if((xPos >= xSize - 1 || xPos < 0) ||
+	   (yPos >= ySize - 1 || yPos < 0))
 	{
 		return nullptr;
 	}
-	else
-	{
-		return tile[yPos][xPos];
-	}
+
+	return tile[yPos][xPos];
 }
 
 bool Board::isEmptyTile(int xPos, int yPos)
 {
+	if((xPos >= xSize - 1 || xPos < 0) ||
+	   (yPos >= ySize - 1 || yPos < 0))
+	{
+		return true;
+	}
+	
 	bool empty = false;
 	
 	if(tile[yPos][xPos] == nullptr)
@@ -193,21 +245,13 @@ string Board::toString()
 		
 		for(int y = 0; y < ySize; y++)
 		{
-			if(isEmptyTile(x, y) == true)
+			if(tile[y][x] == nullptr)
 			{
 				board.append("  |");
 			}
 			else
 			{
-				Tile* tile = getTile(x, y);
-				if(tile == nullptr)
-				{
-					board.append("  |");
-				}
-				else
-				{
-					board.append(tile->toString() + "|");
-				}
+				board.append(tile[y][x]->toString() + "|");
 			}
 		}
 		if(x != xSize - 1)

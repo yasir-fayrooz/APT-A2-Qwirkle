@@ -5,6 +5,11 @@ Tile::Tile(Color color, Shape shape)
    this->color = color;
    this->shape = shape;
 }
+Tile::Tile(const Tile &oldTile)
+{
+	this->color = oldTile.color;
+	this->shape = oldTile.shape;
+}
 
 Color Tile::getColor()
 {

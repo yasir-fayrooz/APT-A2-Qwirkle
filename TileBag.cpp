@@ -95,7 +95,11 @@ void TileBag::shuffleBag(){
 string TileBag::toString(){
 	string str = "";
 	for(int i=0;i<tileBag->getSize();i++){
-		str = str + tileBag->get(i)->getColor() + std::to_string(tileBag->get(i)->getShape()) + ",";
+		str = str + tileBag->get(i)->getColor() + std::to_string(tileBag->get(i)->getShape());
+		if(i != tileBag->getSize() - 1)
+		{
+			str = str + ",";
+		}
 	}
 	return str;
 }

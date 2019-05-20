@@ -2,8 +2,6 @@
 #include <fstream>
 #include <sstream>
 
-#include <iostream> //delete later
-
 using std::stoi;
 
 GameEngine::GameEngine(string player1name, string player2name)
@@ -75,8 +73,6 @@ void GameEngine::startGame(Renderer* render)
 		
 		if(validation == true && render->getQuit() == false && saveGame == false)
 		{
-			std::cout << "VALIDATED INPUT" << std::endl;
-
 			string inputType = input.substr(0, input.find(" "));
 			
 			if(inputType.compare("replace") == 0)
@@ -86,7 +82,6 @@ void GameEngine::startGame(Renderer* render)
 			}
 			else if(inputType.compare("place") == 0)
 			{
-				std::cout << "ABOUT TO PLACE" << std::endl;
 				place(input);
 				player1Turn = !player1Turn;
 				endGame = endGameChecker();
@@ -97,7 +92,7 @@ void GameEngine::startGame(Renderer* render)
 
 void GameEngine::renderGame(Renderer* render)
 {
-	//render->clearConsole();
+	render->clearConsole();
 	render->playerTurn(player1Turn, players[0]->getName(), players[1]->getName());
 	render->playerScore(players[0]);
 	render->playerScore(players[1]);
@@ -201,19 +196,19 @@ void GameEngine::calculatePointsScored(char color, int shape, int xPos, int yPos
 	{
 		pointsScored++;
 	}
-	if(board->getTile((xPos + 1), yPos) != nullptr)
+	if(board->isEmptyTile((xPos + 1), yPos) == false)
 	{
 		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "down");		
 	}
-	if(board->getTile((xPos - 1), yPos) != nullptr)
+	if(board->isEmptyTile((xPos - 1), yPos) == false)
 	{
 		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "up");		
 	}
-	if(board->getTile(xPos, (yPos + 1)) != nullptr)
+	if(board->isEmptyTile(xPos, (yPos + 1)) == false)
 	{
 		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "right");		
 	}
-	if(board->getTile(xPos, (yPos - 1)) != nullptr)
+	if(board->isEmptyTile(xPos, (yPos - 1)) == false)
 	{
 		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "left");		
 	}
@@ -668,6 +663,7 @@ void GameEngine::loadBoardTiles(string boardString, int xSize)
 	{
 		std::getline(iss, line);
 		xPos++;
+		yPos = -1;
 		iterator = 0;
 
 		while(iterator < line.length() - 3)

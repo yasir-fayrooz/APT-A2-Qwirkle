@@ -20,7 +20,7 @@ PlayerHand::PlayerHand(string playerHandString)
 	playerHand = new LinkedList();
 	
 	int iterator = 0;
-	for(unsigned int i = 0; i < playerHandString.length(); i++)
+	for(unsigned int i = 0; i <= (playerHandString.length() / 3); i++)
 	{
 		string tile;
 		if(i == 0)
@@ -88,7 +88,7 @@ string PlayerHand::toString()
 		}
 		else
 		{
-			hand.append(", " + playerHand->get(i)->toString());
+			hand.append("," + playerHand->get(i)->toString());
 		}
 	}
 	return hand;
