@@ -88,6 +88,13 @@ void GameEngine::startGame(Renderer* render)
 			}
 		}
   	}
+	
+	if(endGame == true)
+	{
+		render->clearConsole();
+		render->gameOver(players[0], players[1]);
+		render->getInput();
+	}
 }
 
 void GameEngine::renderGame(Renderer* render)
@@ -96,6 +103,7 @@ void GameEngine::renderGame(Renderer* render)
 	render->playerTurn(player1Turn, players[0]->getName(), players[1]->getName());
 	render->playerScore(players[0]);
 	render->playerScore(players[1]);
+	render->tileBagCount(tileBag);
 	render->board(board);
 	render->playerHand(player1Turn, players[0], players[1]);
 }

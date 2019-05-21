@@ -90,6 +90,11 @@ void Renderer::playerScore(Player* player)
 	std::cout << "Score for " << player->getName() << ": " << player->getScore() << "\n";
 }
 
+void Renderer::tileBagCount(TileBag* tileBag)
+{
+	std::cout << "Tile Bag count: " << tileBag->getSize() << std::endl;
+}
+
 void Renderer::board(Board* board)
 {
 	std::cout << board->toString() << std::endl;
@@ -118,8 +123,8 @@ void Renderer::saveGame()
 void Renderer::inputValidationError()
 {
 	std::cout << "Input error! Ensure these conditions are met:\n";
-	std::cout << "1. case sensitive command of place [tile] at [position]\n";
-	std::cout << "2. case sensitive command of replace [tile]\n";
+	std::cout << "1. case sensitive command: 'place [tile] at [position]' or 'replace [tile]'\n";
+	std::cout << "2. The game follows standard qwirkle rules\n";
 	std::cout << "3. the tile is in your hand and there are enough tiles in bag to replace\n";
 }
 
@@ -131,6 +136,28 @@ void Renderer::qwirkle()
 void Renderer::renderMenuError()
 {
 	std::cout << "Error: please select a valid option (1-4)" << std::endl;
+}
+
+void Renderer::gameOver(Player* player1, Player* player2)
+{
+	std::cout << "Game Over" << std::endl;
+	std::cout << "Score for " << player1->getName() << ":" << player1->getScore() << std::endl;
+	std::cout << "Score for " << player2->getName() << ":" << player2->getScore() << std::endl;
+	
+	if(player1->getScore() > player2->getScore())
+	{
+		std::cout << "Player " << player1->getName() << " won!" << std::endl;
+	}
+	else if(player2->getScore() > player1->getScore())
+	{
+		std::cout << "Player " << player2->getName() << " won!" << std::endl;
+	}
+	else
+	{
+		std::cout << "The Game is a draw!" << std::endl;
+	}
+	
+	std::cout << "\nGoodbye" << std::endl;
 }
 
 /* INSTANCE VARIABLES / FIELDS

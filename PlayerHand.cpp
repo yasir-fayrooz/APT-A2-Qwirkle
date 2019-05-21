@@ -50,7 +50,10 @@ PlayerHand::~PlayerHand()
 
 void PlayerHand::drawTile(TileBag* tileBag)
 {
-	playerHand->addBack(tileBag->drawTileFront());
+	if(tileBag->getSize() > 0)
+	{
+		playerHand->addBack(tileBag->drawTileFront());
+	}
 }
 
 void PlayerHand::replaceTile(char color, int shape, TileBag* tileBag)
