@@ -13,7 +13,7 @@ TileBag::TileBag(string tileBagString)
 	tileBag = new LinkedList();
 	
 	int iterator = 0;
-	for(unsigned int i = 0; i < tileBagString.length(); i++)
+	for(unsigned int i = 0; i <= (tileBagString.length() / 3); i++)
 	{
 		string tile;
 		if(i == 0)

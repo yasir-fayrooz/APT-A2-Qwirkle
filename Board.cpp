@@ -167,8 +167,8 @@ void Board::checkAndExpandBoard(int xPos, int yPos)
 
 Tile* Board::getTile(int xPos, int yPos)
 {
-	if((xPos >= xSize - 1 || xPos < 0) ||
-	   (yPos >= ySize - 1 || yPos < 0))
+	if((xPos >= xSize || xPos < 0) ||
+	   (yPos >= ySize || yPos < 0))
 	{
 		return nullptr;
 	}
@@ -178,8 +178,8 @@ Tile* Board::getTile(int xPos, int yPos)
 
 bool Board::isEmptyTile(int xPos, int yPos)
 {
-	if((xPos >= xSize - 1 || xPos < 0) ||
-	   (yPos >= ySize - 1 || yPos < 0))
+	if((xPos >= xSize || xPos < 0) ||
+	   (yPos >= ySize || yPos < 0))
 	{
 		return true;
 	}
@@ -219,7 +219,22 @@ string Board::toString()
 		{
 			board.append("   ");
 		}
-		board.append(std::to_string(i) + "  ");
+		if(i >= 10)
+		{
+			board.append(std::to_string(i));
+			if(i != ySize - 1)
+			{
+				board.append(" ");
+			}
+		}
+		if(i < 10)
+		{
+			board.append(std::to_string(i));
+			if(i != ySize - 1)
+			{
+				board.append("  ");
+			}
+		}
 	}
 	
 	board.append("\n");

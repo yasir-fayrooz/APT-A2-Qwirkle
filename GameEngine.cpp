@@ -693,8 +693,16 @@ void GameEngine::loadGame(string fileName)
 	std::getline(inFile, boardString);
 	boardString = boardString + "\n";
 	
-	int ySize = (boardString.length() - 4) / 3;
+	int ySize = 0;
 	int xSize = 0;
+	
+	for(unsigned int i = 0; i < boardString.length(); i++)
+	{
+		if(boardString[i] != 32 && boardString[i - 1] == 32)
+		{
+			ySize++;
+		}
+	}
 
 	bool endBoard = false;
 	
