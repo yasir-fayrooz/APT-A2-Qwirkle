@@ -423,10 +423,18 @@ bool GameEngine::validPlacing(char color, int shape, int xPos, int yPos)
 		{
 			nearIllegalPiece = true;
 		}
+		if(nearSameColorAndShape(color, shape, xPos, yPos, "down") == true)
+		{
+			nearIllegalPiece = true;
+		}
 	}
 	if(board->getTile(xPos - 1, yPos) != nullptr)
 	{
 		if(nearSameColorOrShape(color, shape, xPos, yPos, xPos - 1, yPos) == false)
+		{
+			nearIllegalPiece = true;
+		}
+		if(nearSameColorAndShape(color, shape, xPos, yPos, "up") == true)
 		{
 			nearIllegalPiece = true;
 		}
@@ -437,10 +445,18 @@ bool GameEngine::validPlacing(char color, int shape, int xPos, int yPos)
 		{
 			nearIllegalPiece = true;
 		}
+		if(nearSameColorAndShape(color, shape, xPos, yPos, "right") == true)
+		{
+			nearIllegalPiece = true;
+		}
 	}
 	if(board->getTile(xPos, yPos - 1) != nullptr)
 	{
 		if(nearSameColorOrShape(color, shape, xPos, yPos, xPos, yPos - 1) == false)
+		{
+			nearIllegalPiece = true;
+		}
+		if(nearSameColorAndShape(color, shape, xPos, yPos, "left") == true)
 		{
 			nearIllegalPiece = true;
 		}
@@ -515,6 +531,63 @@ bool GameEngine::nearSameColorOrShape(char color, int shape, int xPos, int yPos,
 	}
 
 	return validated;
+}
+
+bool GameEngine::nearSameColorAndShape(char color, int shape, int xPos, int yPos, string side)
+{
+	bool isNearSameColorAndShape = false;
+	int check = 1;
+
+	if(side.compare("down") == 0)
+	{
+		while(board->getTile(xPos + check, yPos) != nullptr)
+		{
+			if(board->getTile(xPos + check, yPos)->getColor() == color &&
+			   board->getTile(xPos + check, yPos)->getShape() == shape)
+			{
+				isNearSameColorAndShape = true;
+			}
+			check++;
+		}
+	}
+	else if(side.compare("up") == 0)
+	{
+		while(board->getTile(xPos - check, yPos) != nullptr)
+		{
+			if(board->getTile(xPos - check, yPos)->getColor() == color &&
+			   board->getTile(xPos - check, yPos)->getShape() == shape)
+			{
+				isNearSameColorAndShape = true;
+			}
+			check++;
+		}
+	}
+	else if(side.compare("left") == 0)
+	{
+		while(board->getTile(xPos, yPos - check) != nullptr)
+		{
+			if(board->getTile(xPos, yPos - check)->getColor() == color &&
+			   board->getTile(xPos, yPos - check)->getShape() == shape)
+			{
+				isNearSameColorAndShape = true;
+			}
+			check++;
+		}
+	}
+	else if(side.compare("right") == 0)
+	{
+		while(board->getTile(xPos, yPos + check) != nullptr)
+		{
+			if(board->getTile(xPos, yPos + check)->getColor() == color &&
+			   board->getTile(xPos, yPos + check)->getShape() == shape)
+			{
+				isNearSameColorAndShape = true;
+			}
+			check++;
+		}
+	}
+
+	return isNearSameColorAndShape;
 }
 
 bool GameEngine::checkSaveGame(string input)
