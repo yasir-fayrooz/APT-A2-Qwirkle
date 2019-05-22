@@ -118,7 +118,7 @@ void newAIGame(Renderer* render)
 bool playerValidation(string name){
 	bool isValid = true;
   
-	if(name.length() < 2)
+	if(name.length() < 3)
 	{
 	  isValid = false;
 	}

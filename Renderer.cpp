@@ -58,7 +58,7 @@ void Renderer::mainMenu()
 void Renderer::playerName(string player)
 {
 	std::cout << "Enter a name for " << player << "(or 'quit')\n";
-	std::cout << "Requirements: must be all capital letters only minimum length of 2\n";
+	std::cout << "Requirements: must be all capital letters only minimum length of 3\n";
 }
 
 void Renderer::loadGame()
@@ -181,8 +181,9 @@ void Renderer::AIInput(string input)
 	for(unsigned int i = 0; i < input.length(); i++)
 	{
 		std::cout << input[i] << std::flush;
-		sleep(300);
+		sleep(200);
 	}
+	sleep(300);
 	std::cout << "\n";
 }
 

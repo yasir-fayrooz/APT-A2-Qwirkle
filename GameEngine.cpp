@@ -57,15 +57,15 @@ void GameEngine::startGame(Renderer* render)
     	bool validation = false;
 		string input = ""; //each time a player types something, it gets stored in input
 		
-		if(AIGame == true && player1Turn == false)
+		if(AIGame == true && player1Turn == false) //If its the AI turn
 		{
-			input = AIInput();
-			render->AIInput(input);
-			validation = true;
+			input = AIInput(); //AI calculates input and sets it to the input in the game loop
+			render->AIInput(input); //AI renders the input to the screen
+			validation = true; //AI input is always correct
 		}
 		else
 		{
-			while(validation == false && render->getQuit() == false && saveGame == false) //loop for validating input
+			while(validation == false && render->getQuit() == false && saveGame == false) //loop for validating players input
 			{
 				input = render->getInput();
 				saveGame = checkSaveGame(input);
@@ -221,6 +221,14 @@ void GameEngine::place(string input)
 	calculatePointsScored(color, shape, xPos, yPos); //adds points to the players score after placing
 }
 
+/*
+This method returns the AI's string input and is calculated by:
+1. Iterating through the whole board and finding a tile,
+   1.1 Finding the empty spaces around the tile
+   1.2 Checking the AI's hand and validating tile input
+   1.3 If there is a tile than can be placed, return the place command with the tile and the position
+2. If there arent any tiles in the hand that can be placed, return the replace command with the first tile in the hand.
+*/
 string GameEngine::AIInput()
 {
 	string input = "";
@@ -274,6 +282,12 @@ string GameEngine::AIInput()
 	return "replace " + players[1]->getPlayerHandString().substr(0, 2);
 }
 
+/*
+This method returns the AI's string input and is calculated by:
+1. Iterating through the AI players hand
+2. If the tile in the hand can be placed on the empty xPos and yPos position
+3. return the place command with the tile and xPos, yPos position
+*/
 string GameEngine::AIValidation(int xPos, int yPos)
 {
 	string input = "";
@@ -860,6 +874,11 @@ void GameEngine::loadGame(string fileName)
 
 	string player2Name;
 	std::getline(inFile, player2Name);
+	
+	if(player2Name.compare("AI") == 0)
+	{
+		AIGame = true;
+	}
 
 	string player2ScoreStr;
 	std::getline(inFile, player2ScoreStr);
