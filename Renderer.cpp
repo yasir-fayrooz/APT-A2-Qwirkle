@@ -144,7 +144,7 @@ void Renderer::inputValidationError()
 	std::cout << "1. Case sensitive command: 'place [tile] at [position]' or 'replace [tile]'\n";
 	std::cout << "2. The game follows standard qwirkle rules\n";
 	std::cout << "3. The tile is in your hand and there are enough tiles in bag to replace\n";
-	std::cout << "4. Alternatively, you can save the game using the 'save [filename]' command\n";
+	std::cout << "4. Alternatively, you can save the game using the 'save [filename]' or quit using the 'quit' command\n";
 }
 
 void Renderer::qwirkle()
