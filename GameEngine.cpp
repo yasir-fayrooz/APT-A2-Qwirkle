@@ -6,11 +6,7 @@ using std::stoi;
 
 GameEngine::GameEngine(string player1name, string player2name)
 {
-	//creates 2 new players in the player array, initialises new things such as board etc.
-	//board = new Board();
-	//tileBag = new TileBag();
-	//players[0] = new Player(player1Name, POINTER TO TILEBAG);
-	//players[1] = new Player(player2Name, POINTER TO TILEBAG);
+	//Method overloaded to start a new game
 	board = new Board();
 	tileBag = new TileBag();
 	players[0] = new Player(player1name, tileBag);
@@ -19,6 +15,7 @@ GameEngine::GameEngine(string player1name, string player2name)
 
 GameEngine::GameEngine(string fileName)
 {
+	//Method overloaded to load a game
 	//loads from file and stores into instance variables in .h file
 	GameEngine::loadGame(fileName);
 }
@@ -31,17 +28,21 @@ GameEngine::~GameEngine()
 	delete players[1];
 }
 
+
+/*
+This method is our main game loop that runs when starting or loading a game.
+*/
 void GameEngine::startGame(Renderer* render)
 {
-	bool saveGame = false;
-	while(endGame == false && render->getQuit() == false)
+	bool saveGame = false; //if a player saves a game, this will be true
+	while(endGame == false && render->getQuit() == false) //Game loop conditions
 	{
     	renderGame(render);
 
     	if(qwirkle == true)
     	{
       		render->qwirkle();
-      		qwirkle = false;
+      		qwirkle = false; //qwirkle is an instance variable
     	}
 
 		if(saveGame == true)
@@ -51,9 +52,9 @@ void GameEngine::startGame(Renderer* render)
 		}
 
     	bool validation = false;
-		string input = "";
+		string input = ""; //each time a player types something, it gets stored in input
 
-    	while(validation == false && render->getQuit() == false && saveGame == false)
+    	while(validation == false && render->getQuit() == false && saveGame == false) //loop for validating input
     	{
       		input = render->getInput();
       		saveGame = checkSaveGame(input);
@@ -71,7 +72,7 @@ void GameEngine::startGame(Renderer* render)
 			}
     	}
 		
-		if(validation == true && render->getQuit() == false && saveGame == false)
+		if(validation == true && render->getQuit() == false && saveGame == false) //Places or replaces once input is validated
 		{
 			string inputType = input.substr(0, input.find(" "));
 			
@@ -84,7 +85,7 @@ void GameEngine::startGame(Renderer* render)
 			{
 				place(input);
 				player1Turn = !player1Turn;
-				endGame = endGameChecker();
+				endGame = endGameChecker(); //checks game ending conditions
 			}
 		}
   	}
@@ -97,6 +98,9 @@ void GameEngine::startGame(Renderer* render)
 	}
 }
 
+/*
+This method renders the game to console
+*/
 void GameEngine::renderGame(Renderer* render)
 {
 	render->clearConsole();
@@ -108,11 +112,14 @@ void GameEngine::renderGame(Renderer* render)
 	render->playerHand(player1Turn, players[0], players[1]);
 }
 
+/*
+This method is the main method that validates every part of input validation in sub-methods
+*/
 bool GameEngine::validation(string input)
 {
 	bool validatedMove = false;
 
-	bool validatedInput = inputValidation(input);
+	bool validatedInput = inputValidation(input); //inputValidation() validates the string length and contents.
 
 	if(validatedInput == true)
 	{
@@ -130,8 +137,8 @@ bool GameEngine::validation(string input)
 		int xPos = position[0] % 65; //ASCII VALUE = 0 FOR 'A', 1 FOR 'B'...etc.. stoi(position.substr(1, position.length() - 1)); //convert str to int
 		int yPos = stoi(position.substr(1, position.length() - 1)); //convert str to int
 
-		bool validatedPlayerHand = playerHandValidation(inputType, color, shape);
-		bool validatedBoardPos = boardPosValidation(color, shape, xPos, yPos);
+		bool validatedPlayerHand = playerHandValidation(inputType, color, shape); //validates the player hand and ensuring its a valid tile.
+		bool validatedBoardPos = boardPosValidation(color, shape, xPos, yPos); //validates the board position string and ensuring its within limits
 
 		if(validatedPlayerHand == true && inputType.compare("replace") == 0)
 		{
@@ -146,6 +153,9 @@ bool GameEngine::validation(string input)
 	return validatedMove;
 }
 
+/*
+This method replaces a tile in the players hand
+*/
 void GameEngine::replace(string input)
 {
 	int firstSpace = input.find_first_of(" ") + 1;
@@ -166,6 +176,9 @@ void GameEngine::replace(string input)
 	}
 }
 
+/*
+This method places a tile in the players hand to the board position
+*/
 void GameEngine::place(string input)
 {
 	int firstSpace = input.find_first_of(" ") + 1;
@@ -181,7 +194,7 @@ void GameEngine::place(string input)
 	int xPos = position[0] % 65; //ASCII VALUE = 0 FOR 'A', 1 FOR 'B'...etc..
 	int yPos = stoi(position.substr(1, position.length() - 1)); //convert str to int
 
-	board->placeTile(color, shape, xPos, yPos);
+	board->placeTile(color, shape, xPos, yPos); //places tile
 
 	if(player1Turn == true)
 	{
@@ -193,9 +206,13 @@ void GameEngine::place(string input)
 		players[1]->deleteTileHand(color, shape);
 		players[1]->drawTile(tileBag);
 	}
-	calculatePointsScored(color, shape, xPos, yPos);
+	calculatePointsScored(color, shape, xPos, yPos); //adds points to the players score after placing
 }
 
+
+/*
+This method checks the board tiles and adds the points scored once a player places a tile.
+*/
 void GameEngine::calculatePointsScored(char color, int shape, int xPos, int yPos)
 {
 	int pointsScored = 0;
@@ -206,19 +223,19 @@ void GameEngine::calculatePointsScored(char color, int shape, int xPos, int yPos
 	}
 	if(board->isEmptyTile((xPos + 1), yPos) == false)
 	{
-		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "down");		
+		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "down"); //its going down because there is a tile under the one you placed	
 	}
 	if(board->isEmptyTile((xPos - 1), yPos) == false)
 	{
-		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "up");		
+		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "up"); //its going up because there is a tile above the one you placed
 	}
 	if(board->isEmptyTile(xPos, (yPos + 1)) == false)
 	{
-		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "right");		
+		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "right"); //its going right because there is a tile to the right where you placed	
 	}
 	if(board->isEmptyTile(xPos, (yPos - 1)) == false)
 	{
-		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "left");		
+		pointsScored = pointsScored + this->pointsScored(xPos, yPos, "left"); //its going left because there is a tile to the left where you placed	
 	}
 
 	if(player1Turn == true)
@@ -231,16 +248,19 @@ void GameEngine::calculatePointsScored(char color, int shape, int xPos, int yPos
 	}
 }
 
+/*
+This method loops checking if there is tiles on the side specified in the parameter and adds points.
+*/
 int GameEngine::pointsScored(int xPos, int yPos, string side)
 {
 	int pointsScored = 0;
 	pointsScored++;
-	int qwirkleCheck = 1;
+	int qwirkleCheck = 1; //it also counts how many there are on the sides and if its 6, qwirkle is set to true
 
 	int newX = xPos;
 	int newY = yPos;
 
-	while(board->getTile(newX, newY) != nullptr)
+	while(board->getTile(newX, newY) != nullptr) //while there are more tiles on the side specified..
 	{
 		pointsScored++;
 		qwirkleCheck++;
@@ -272,6 +292,9 @@ int GameEngine::pointsScored(int xPos, int yPos, string side)
 	return pointsScored;
 }
 
+/*
+This condition of ending a game specified in our assignment specification
+*/
 bool GameEngine::endGameChecker()
 {
 	bool endGame = false;
@@ -288,6 +311,12 @@ bool GameEngine::endGameChecker()
 	return endGame;
 }
 
+/*
+This checks 3 things, 
+the inputs length matches the length of a command, 
+the input has the words 'place' & 'at' OR 'replace' 
+the words are in appropriate places and there are sufficient spaces in the input
+*/
 bool GameEngine::inputValidation(string input)
 {
 	bool validated = false;
@@ -314,6 +343,9 @@ bool GameEngine::inputValidation(string input)
 	return validated;
 }
 
+/*
+This gets a string and counts how many spaces there are and returns the count
+*/
 int GameEngine::spaceCount(string input)
 {
 	int spaceCount = 0;
@@ -329,6 +361,12 @@ int GameEngine::spaceCount(string input)
 	return spaceCount;
 }
 
+/*
+This method validates the players hand input by checking:
+1. the color and shape is within limits according to the specification
+2. The color and shape exists in the players hand
+3. The player is not replacing a tile with no tile bags left
+*/
 bool GameEngine::playerHandValidation(string inputType, char color, int shape)
 {
 	bool validated = false;
@@ -361,11 +399,17 @@ bool GameEngine::playerHandValidation(string inputType, char color, int shape)
 	return validated;
 }
 
+/*
+This method validates the board input by checking:
+1. the board positions entered are within limits
+2. the player is placing on an empty tile
+3. the player is placing in a legal spot according to qwirkle rules
+*/
 bool GameEngine::boardPosValidation(char color, int shape, int xPos, int yPos)
 {
 	bool validated = false;
 
-	bool isWithinBoardSize = withinBoardSize(xPos, yPos);
+	bool isWithinBoardSize = withinBoardSize(xPos, yPos); //Checks in the positions are within board limits
 	bool isPlacingOnEmptyTile = false;
 	bool isValidPlacing = false;
 
@@ -375,7 +419,7 @@ bool GameEngine::boardPosValidation(char color, int shape, int xPos, int yPos)
 		
 		if(isPlacingOnEmptyTile == true)
 		{
-			isValidPlacing = validPlacing(color, shape , xPos, yPos);
+			isValidPlacing = validPlacing(color, shape , xPos, yPos); //checks qwirkle rules
 		}
 	}
 
@@ -387,6 +431,10 @@ bool GameEngine::boardPosValidation(char color, int shape, int xPos, int yPos)
 	return validated;
 }
 
+/*
+This method validates the board input by checking:
+1. the inputs board positions are within the boards size limits
+*/
 bool GameEngine::withinBoardSize(int xPos, int yPos)
 {
 	bool validated = false;
@@ -402,6 +450,10 @@ bool GameEngine::withinBoardSize(int xPos, int yPos)
 	return validated;
 }
 
+/*
+This method validates the board input by checking:
+1. the position in the board is empty and not already occupied with a tile
+*/
 bool GameEngine::placingOnEmptyTile(int xPos, int yPos)
 {
 	bool validated = false;
@@ -414,6 +466,13 @@ bool GameEngine::placingOnEmptyTile(int xPos, int yPos)
 	return validated;
 }
 
+/*
+This method validates the board input by checking:
+1. the input position is not in an illegal spot by checking:
+   1.1 the tile being placed must be on the same sides as either a color OR shape
+   1.2 the tile being placed must not be on the same sides as a tile with the same color AND shape
+2. The tile must not be placed in a spot where no other tiles are on its sides unless there are no tiles placed
+*/
 bool GameEngine::validPlacing(char color, int shape, int xPos, int yPos)
 {
 	bool validated = false;
@@ -490,6 +549,10 @@ bool GameEngine::validPlacing(char color, int shape, int xPos, int yPos)
 	return validated;
 }
 
+/*
+This method validates the board input by checking:
+1. in a loop, check the sides tiles and ensure they match the same color OR shape
+*/
 bool GameEngine::nearSameColorOrShape(char color, int shape, int xPos, int yPos, int newX, int newY)
 {
 	bool validated = false;
@@ -541,6 +604,10 @@ bool GameEngine::nearSameColorOrShape(char color, int shape, int xPos, int yPos,
 	return validated;
 }
 
+/*
+This method validates the board input by checking:
+1. in a loop, check the sides tiles and return true if a tile on the side matchs the same color AND shape
+*/
 bool GameEngine::nearSameColorAndShape(char color, int shape, int xPos, int yPos, string side)
 {
 	bool isNearSameColorAndShape = false;
@@ -598,6 +665,12 @@ bool GameEngine::nearSameColorAndShape(char color, int shape, int xPos, int yPos
 	return isNearSameColorAndShape;
 }
 
+/*
+This method validates the input of saving a game by checking:
+1. If the first word is EQUAL to "save"
+2. if there is a space after save
+3. if there are more characters after the space
+*/
 bool GameEngine::checkSaveGame(string input)
 {
 	bool save = false;
@@ -616,6 +689,11 @@ bool GameEngine::checkSaveGame(string input)
 	return save;
 }
 
+/*
+This saves the game by:
+1. creating a file by the file name inputted and adding .txt extension
+2. opens the file and adds each piece of data required as per assignment specification.
+*/
 void GameEngine::saveGame(string input)
 {
 	string fileName = input.substr((input.find_first_of(" ") + 1), input.length());
@@ -650,18 +728,16 @@ void GameEngine::saveGame(string input)
 	outFile.close();
 }
 
+/*
+This loads the game by:
+1. opening the file name after its validated it exists in the qwirkle.cpp main menu class
+2. getting each piece of information and storing it in required instance variables for the game.
+3. loading the boards x size and y size
+4. loading the boards tiles
+5. loading the tile bag and player hands from string
+*/
 void GameEngine::loadGame(string fileName)
 {
-	/* loadGame(string fileName) method pseudocode
-	//OPEN FILE
-	//FIRST LINE string user1 = players[0].setName(user1);
-	//SECOND LINE string score1 CONVERT TO INT = players[0].setScore(score1);
-	//THIRD LINE string hand1 = players[0].setHand(hand1);
-	//FOURTH LINE string user2 = players[1].setName(user2);
-	//FIFTH LINE string score2 CONVERT TO INT = players[1].setScore(score2);
-	//SIXTH LINE string hand2 = players[1].setHand(hand2);
-	//SEVENTH LINE IS THE BOARD WHICH IS COMPLEX WORK IN PROGRESS
-	*/
 	string file = fileName + ".txt";
 
 	std::ifstream inFile;
@@ -696,6 +772,7 @@ void GameEngine::loadGame(string fileName)
 	int ySize = 0;
 	int xSize = 0;
 	
+	//loop to claculate how many columns there are
 	for(unsigned int i = 0; i < boardString.length(); i++)
 	{
 		if(boardString[i] != 32 && boardString[i - 1] == 32)
@@ -706,6 +783,7 @@ void GameEngine::loadGame(string fileName)
 
 	bool endBoard = false;
 	
+	//loop to calculate how many rows there are
 	while(endBoard == false)
 	{
 		string tempString;
@@ -723,19 +801,28 @@ void GameEngine::loadGame(string fileName)
 		}
 	}
 
-	board = new Board(xSize, ySize);
-	loadBoardTiles(boardString, xSize);
+	board = new Board(xSize, ySize); //create an empty board with the calculated rows and columns
+	loadBoardTiles(boardString, xSize); //loads the board tiles
 	
 	string tileBagString;
 	std::getline(inFile, tileBagString);
 
-	tileBag = new TileBag(tileBagString);
+	tileBag = new TileBag(tileBagString); //creates the tile bag with the tilebag string
 
-	players[0] = new Player(player1Name, player1Score, player1Hand);
+	players[0] = new Player(player1Name, player1Score, player1Hand); //creates the first player with the loaded information
 
-	players[1] = new Player(player2Name, player2Score, player2Hand);
+	players[1] = new Player(player2Name, player2Score, player2Hand); //creates the second player with the loaded information
 }
 
+/*
+This loads the game by:
+1. getting the boards string and
+2. in a loop, while we have more rows to loop through the board string
+3. within the boundries of each '|' in the strings
+4. IF the boundries does not equal to '  '
+5. Get the characters inside the boundry.
+6. Add the tile to the appropriate x position and y position calculated by the loop
+*/
 void GameEngine::loadBoardTiles(string boardString, int xSize)
 {
 	std::istringstream iss(boardString);
