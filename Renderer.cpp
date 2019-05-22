@@ -1,7 +1,22 @@
 #include "Renderer.h"
 
 #include <iostream>
-#include <stdlib.h>
+
+#ifdef _WIN32
+    #include <windows.h>
+
+    void Renderer::sleep(unsigned milliseconds)
+    {
+        Sleep(milliseconds);
+    }
+#else
+    #include <unistd.h>
+
+    void Renderer::sleep(unsigned milliseconds)
+    {
+        usleep(milliseconds * 1000); // takes microseconds
+    }
+#endif
 
 void Renderer::clearConsole()
 {
@@ -34,9 +49,10 @@ void Renderer::mainMenu()
 	std::cout << "Menu\n";
 	std::cout << "----\n";
 	std::cout << "1. New Game\n";
-	std::cout << "2. Load Game\n";	
-	std::cout << "3. Show student information\n";
-	std::cout << "4. Quit\n";
+	std::cout << "2. New AI Game\n";
+	std::cout << "3. Load Game\n";	
+	std::cout << "4. Show student information\n";
+	std::cout << "5. Quit\n";
 }
 
 void Renderer::playerName(string player)
@@ -158,6 +174,16 @@ void Renderer::gameOver(Player* player1, Player* player2)
 	}
 	
 	std::cout << "\nGoodbye" << std::endl;
+}
+
+void Renderer::AIInput(string input)
+{
+	for(unsigned int i = 0; i < input.length(); i++)
+	{
+		std::cout << input[i] << std::flush;
+		sleep(300);
+	}
+	std::cout << "\n";
 }
 
 /* INSTANCE VARIABLES / FIELDS

@@ -10,7 +10,7 @@ using std::string;
 
 class GameEngine {
 public:
-   GameEngine(string player1name, string player2name);
+   GameEngine(string player1name, string player2name, bool AIGame);
    GameEngine(string fileName);
    ~GameEngine();
    
@@ -23,6 +23,7 @@ private:
    TileBag* tileBag;
    
    Player* players[2]; //2 players
+   bool AIGame = false;
    bool player1Turn = true; //if true, player 1's turn, if false, player 2's turn...
    
    bool endGame = false; //checks for win conditions and sets to true when game ends
@@ -33,6 +34,8 @@ private:
    bool validation(string input);
    void replace(string input);
    void place(string input);
+   string AIInput();
+   string AIValidation(int xPos, int yPos);
    void calculatePointsScored(char color, int shape, int xPos, int yPos);
    int  pointsScored(int xPos, int yPos, string side);
    bool endGameChecker();

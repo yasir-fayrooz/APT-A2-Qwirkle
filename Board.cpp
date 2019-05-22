@@ -194,6 +194,19 @@ bool Board::isEmptyTile(int xPos, int yPos)
 	return empty;
 }
 
+bool Board::isWithinRange(int xPos, int yPos)
+{
+	bool withinRange = true;
+	
+	if((xPos >= xSize || xPos < 0) ||
+	   (yPos >= ySize || yPos < 0))
+	{
+		withinRange = false;
+	}
+	
+	return withinRange;
+}
+
 int Board::getTilesPlaced()
 {
 	return tilesPlaced;

@@ -2,15 +2,18 @@
 #include <fstream>
 #include <sstream>
 
+#include <iostream> // del later
+
 using std::stoi;
 
-GameEngine::GameEngine(string player1name, string player2name)
+GameEngine::GameEngine(string player1name, string player2name, bool AIGame)
 {
 	//Method overloaded to start a new game
 	board = new Board();
 	tileBag = new TileBag();
 	players[0] = new Player(player1name, tileBag);
 	players[1] = new Player(player2name, tileBag);
+	this->AIGame = AIGame;
 }
 
 GameEngine::GameEngine(string fileName)
@@ -53,24 +56,33 @@ void GameEngine::startGame(Renderer* render)
 
     	bool validation = false;
 		string input = ""; //each time a player types something, it gets stored in input
-
-    	while(validation == false && render->getQuit() == false && saveGame == false) //loop for validating input
-    	{
-      		input = render->getInput();
-      		saveGame = checkSaveGame(input);
-      		validation = this->validation(input);
-			
-      		if(validation == false && saveGame == false)
-      		{
-				  renderGame(render);
-				  render->inputValidationError();
-      		}
-			
-			if(saveGame == true)
+		
+		if(AIGame == true && player1Turn == false)
+		{
+			input = AIInput();
+			render->AIInput(input);
+			validation = true;
+		}
+		else
+		{
+			while(validation == false && render->getQuit() == false && saveGame == false) //loop for validating input
 			{
-				this->saveGame(input);
-			}
-    	}
+				input = render->getInput();
+				saveGame = checkSaveGame(input);
+				validation = this->validation(input);
+			
+				if(validation == false && saveGame == false)
+				{
+					renderGame(render);
+					render->inputValidationError();
+				}
+			
+				if(saveGame == true)
+				{
+					this->saveGame(input);
+				}
+			}	
+		}
 		
 		if(validation == true && render->getQuit() == false && saveGame == false) //Places or replaces once input is validated
 		{
@@ -209,6 +221,98 @@ void GameEngine::place(string input)
 	calculatePointsScored(color, shape, xPos, yPos); //adds points to the players score after placing
 }
 
+string GameEngine::AIInput()
+{
+	string input = "";
+	
+	for(int xPos = 0; xPos < board->getXSize(); xPos++)
+	{
+		for(int yPos = 0; yPos < board->getYSize(); yPos++)
+		{
+			if(board->getTile(xPos, yPos) != nullptr)
+			{
+				if(board->isWithinRange(xPos + 1, yPos) == true &&
+				   board->isEmptyTile(xPos + 1, yPos) == true)
+			    {
+					input = AIValidation(xPos + 1, yPos);
+					if(input.compare("") != 0)
+					{
+						return input;
+					}
+			    }
+				if(board->isWithinRange(xPos - 1, yPos) == true &&
+				   board->isEmptyTile(xPos - 1, yPos) == true)
+			    {
+					input = AIValidation(xPos - 1, yPos);
+					if(input.compare("") != 0)
+					{
+						return input;
+					}
+			    }
+				if(board->isWithinRange(xPos, yPos + 1) == true &&
+				   board->isEmptyTile(xPos, yPos + 1) == true)
+				{
+					input = AIValidation(xPos, yPos + 1);
+					if(input.compare("") != 0)
+					{
+						return input;
+					}
+				}
+				if(board->isWithinRange(xPos, yPos - 1) == true &&
+				   board->isEmptyTile(xPos, yPos - 1) == true)
+				{
+					input = AIValidation(xPos, yPos - 1);
+					if(input.compare("") != 0)
+					{
+						return input;
+					}
+				}
+			}
+		}
+	}
+	
+	return "replace " + players[1]->getPlayerHandString().substr(0, 2);
+}
+
+string GameEngine::AIValidation(int xPos, int yPos)
+{
+	string input = "";
+	string AIHand = players[1]->getPlayerHandString();
+	
+	int iterator = 0;
+	for(unsigned int i = 0; i <= (AIHand.length() / 3); i++)
+	{
+		string tile;
+		if(i == 0)
+		{
+			tile = AIHand.substr(iterator, 2);
+		}
+		else
+		{
+			iterator = AIHand.find(",", iterator) + 1;
+			tile = AIHand.substr(iterator, 2);
+		}
+		
+		char color = tile[0];
+		int shape = stoi(tile.substr(1, 1));
+		
+		bool validatedBoardPos = boardPosValidation(color, shape, xPos, yPos); //validates the board position string and ensuring its within limits
+		
+		if(validatedBoardPos == true)
+		{
+			string validInput = "place ";
+			validInput = validInput + color;
+			validInput.append(std::to_string(shape));
+			validInput.append(" at ");
+			char xChar = 65 + xPos;
+			validInput = validInput + xChar;
+			validInput.append(std::to_string(yPos));
+			return validInput;
+		}
+	}
+	
+	return "";
+}
 
 /*
 This method checks the board tiles and adds the points scored once a player places a tile.

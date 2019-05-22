@@ -15,7 +15,7 @@ public:
 	void playerName(string player);
 	void loadGame();
 	void showStudentInfo();
-
+	
 	void playerTurn(bool player1Turn, string player1Name, string player2Name);
 	void playerScore(Player* player);
 	void tileBagCount(TileBag* tileBag);
@@ -26,6 +26,8 @@ public:
 	void renderMenuError();
 	void qwirkle();
 	void gameOver(Player* player1, Player* player2);
+	void AIInput(string input);
+	void sleep(unsigned milliseconds);
 
 	string getInput();
 

@@ -12,6 +12,7 @@ using std::string;
 
 // Functions
 void newGame(Renderer* render);
+void newAIGame(Renderer* render);
 void loadGame(Renderer* render);
 void showStudentInfo(Renderer* render);
 bool quit();
@@ -45,13 +46,17 @@ int main(void) {
     }
     else if (input.compare("2") == 0)
     {
+      newAIGame(render);
+    }
+	else if (input.compare("3") == 0)
+    {
       loadGame(render);
     }
-    else if (input.compare("3") == 0)
+    else if (input.compare("4") == 0)
     {
       showStudentInfo(render);
     }
-    else if (input.compare("4") == 0)
+    else if (input.compare("5") == 0)
     {
       quitGame = quit();
     }
@@ -84,7 +89,26 @@ void newGame(Renderer* render)
 
 	if(render->getQuit() == false)
 	{
-		GameEngine* gameEngine = new GameEngine(player1, player2);
+		GameEngine* gameEngine = new GameEngine(player1, player2, false);
+		gameEngine->startGame(render);
+		delete gameEngine;
+	}
+}
+
+void newAIGame(Renderer* render)
+{
+	render->clearConsole();
+	string player1 = "";
+
+	while (playerValidation(player1) == false && render->getQuit() == false)
+	{
+		render->playerName("Player 1"); //This will render player 1 to enter his name
+		player1 = render->getInput();
+	}
+	
+	if(render->getQuit() == false)
+	{
+		GameEngine* gameEngine = new GameEngine(player1, "AI", true);
 		gameEngine->startGame(render);
 		delete gameEngine;
 	}

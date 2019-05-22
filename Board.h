@@ -19,6 +19,7 @@ public:
    void placeTile(char color, int shape, int xPos, int yPos);
    Tile* getTile(int xPos, int yPos);
    bool isEmptyTile(int xPos, int yPos);
+   bool isWithinRange(int xPos, int yPos);
    int  getTilesPlaced();
 
    int  getXSize();
