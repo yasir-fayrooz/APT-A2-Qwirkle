@@ -180,6 +180,7 @@ void Renderer::gameOver(Player* player1, Player* player2)
 
 void Renderer::AIInput(string input)
 {
+	std::cout << "> " << std::flush;
 	for(unsigned int i = 0; i < input.length(); i++)
 	{
 		std::cout << input[i] << std::flush;
