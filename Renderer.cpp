@@ -45,14 +45,16 @@ bool Renderer::getQuit()
 void Renderer::mainMenu()
 {
 	quit = false;
-    std::cout << "Welcome to Qwirkle!" << "\n" << "-------------------" << "\n";
-	std::cout << "Menu\n";
-	std::cout << "----\n";
-	std::cout << "1. New Game\n";
-	std::cout << "2. New AI Game\n";
-	std::cout << "3. Load Game\n";	
-	std::cout << "4. Show student information\n";
-	std::cout << "5. Quit\n";
+	std::cout << "--------------------------------\n";
+    std::cout << "|      Welcome to Qwirkle!     |" << "\n--------------------------------\n";
+	std::cout << "|             Menu             |";
+	std::cout << "\n--------------------------------\n";
+	std::cout << "|       1. 2 Player Game       |\n";
+	std::cout << "|      2. You VS AI (CPU)      |\n";
+	std::cout << "|         3. Load Game         |\n";	
+	std::cout << "| 4. Show student information  |\n";
+	std::cout << "|           5. Quit            |\n";
+	std::cout << "--------------------------------\n";
 }
 
 void Renderer::playerName(string player)
@@ -151,7 +153,7 @@ void Renderer::qwirkle()
 
 void Renderer::renderMenuError()
 {
-	std::cout << "Error: please select a valid option (1-4)" << std::endl;
+	std::cout << "Error: please select a valid option (1-5)" << std::endl;
 }
 
 void Renderer::gameOver(Player* player1, Player* player2)
