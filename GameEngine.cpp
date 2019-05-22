@@ -812,6 +812,8 @@ void GameEngine::loadGame(string fileName)
 	players[0] = new Player(player1Name, player1Score, player1Hand); //creates the first player with the loaded information
 
 	players[1] = new Player(player2Name, player2Score, player2Hand); //creates the second player with the loaded information
+
+	inFile.close();
 }
 
 /*
