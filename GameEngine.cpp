@@ -239,7 +239,7 @@ string GameEngine::AIInput()
 		{
 			if(board->getTile(xPos, yPos) != nullptr)
 			{
-				if(board->isWithinRange(xPos + 1, yPos) == true &&
+				if(withinBoardSize(xPos + 1, yPos) == true &&
 				   board->isEmptyTile(xPos + 1, yPos) == true)
 			    {
 					input = AIValidation(xPos + 1, yPos);
@@ -248,7 +248,7 @@ string GameEngine::AIInput()
 						return input;
 					}
 			    }
-				if(board->isWithinRange(xPos - 1, yPos) == true &&
+				if(withinBoardSize(xPos - 1, yPos) == true &&
 				   board->isEmptyTile(xPos - 1, yPos) == true)
 			    {
 					input = AIValidation(xPos - 1, yPos);
@@ -257,7 +257,7 @@ string GameEngine::AIInput()
 						return input;
 					}
 			    }
-				if(board->isWithinRange(xPos, yPos + 1) == true &&
+				if(withinBoardSize(xPos, yPos + 1) == true &&
 				   board->isEmptyTile(xPos, yPos + 1) == true)
 				{
 					input = AIValidation(xPos, yPos + 1);
@@ -266,7 +266,7 @@ string GameEngine::AIInput()
 						return input;
 					}
 				}
-				if(board->isWithinRange(xPos, yPos - 1) == true &&
+				if(withinBoardSize(xPos, yPos - 1) == true &&
 				   board->isEmptyTile(xPos, yPos - 1) == true)
 				{
 					input = AIValidation(xPos, yPos - 1);
